@@ -1,0 +1,20 @@
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% block content %}
+<div class="container">
+    <div style="margin-top: 20px; margin-left: 70px;" class="complete">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Successfully Registered!</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+                <div class="text-center">
+                    <h1>WELCOME TO MEGA DALLAS!</h1>
+                    <p>But before we get started, we need to up you to update your profile.</p>
+                    <p></p>
+                    <a href="{% url 'update_profile'%}"><button type="button" class="btn btn-primary" >Update Profile</button></a>
+                </div>
+           
+        
+    </div>
+</div>
+
+{% endblock %}

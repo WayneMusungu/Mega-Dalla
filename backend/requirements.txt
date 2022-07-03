@@ -1,0 +1,11 @@
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+beautifulsoup4==4.11.1
+confusable-homoglyphs==3.2.0
+crispy-bootstrap5==0.6
+Django==4.0.5
+django-bootstrap-v5==1.0.11
+django-crispy-forms==1.14.0
+django-registration==3.3
+soupsieve==2.3.2.post1
+sqlparse==0.4.2

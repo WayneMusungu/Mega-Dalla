@@ -1,0 +1,30 @@
+
+
+{%extends "django_registration/base.html"%} {% load bootstrap5 %} {% block content %} 
+
+
+<div class="container">
+    <div style="margin-top: 30px; margin-left: 90px;" class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class=" text-center">
+                <h1>You are a click away from making your purchase</h1>
+                <!-- <p>We are almost there just one more step.</p>
+                <p>And we get started 😃</p> -->
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="prof-body">
+                <form style="color: #000000;" action="{% url 'update_profile'%}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token%} {% bootstrap_form form %}
+                    <div class="form-group text-center">
+                        <input type="submit" class="m-4 btn btn-primary hood-btn login-btn" value="UPDATE PROFILE">
+                    </div>
+                    <input type="hidden" name="next" value="{{next}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
