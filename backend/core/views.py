@@ -109,6 +109,9 @@ def logout_user(request):
 
     return render(request,'welcome.html')
 
+
+
+
 def get_coupon(request, code):
     try:
         coupon = Coupon.objects.get(code=code)
