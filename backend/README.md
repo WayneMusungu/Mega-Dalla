@@ -32,3 +32,6 @@ Either a computer,phone,tablet or an Ipad
 Make sure you have access to internet
 Click on the live link in the about section 
 
+#### Install dependancies
+Install dependancies that will create an environment for the app to run
+`pip install -r requirements.txt`
