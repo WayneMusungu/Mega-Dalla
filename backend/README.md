@@ -40,3 +40,8 @@ Install dependancies that will create an environment for the app to run
 In a new terminal, open the postgresql shell with `psql`.
 ```bash
 CREATE DATABASE megadalla; 
+
+#### Make and run migrations
+```bash
+python3.8 manage.py makemigrations && python3.8 manage.py migrate
+```
