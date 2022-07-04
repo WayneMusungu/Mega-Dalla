@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import DetailView
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from core.forms import UserProfileForm
 
@@ -16,8 +17,16 @@ def welcome(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    items = Item.objects.all()
+    print(items)
+    context = {
+        'items': items
+    }
+    return render(request, 'home.html', context)
 
+class ItemDetailView(DetailView):
+    model = Item
+    template_name = "product.html"
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
