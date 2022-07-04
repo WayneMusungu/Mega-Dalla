@@ -35,3 +35,8 @@ Click on the live link in the about section
 #### Install dependancies
 Install dependancies that will create an environment for the app to run
 `pip install -r requirements.txt`
+
+#### Create the Database
+In a new terminal, open the postgresql shell with `psql`.
+```bash
+CREATE DATABASE megadalla; 
