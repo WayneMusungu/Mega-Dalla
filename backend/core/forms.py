@@ -7,3 +7,4 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['bio','phone_number', 'fax_number']
+        
