@@ -46,3 +46,7 @@ CREATE DATABASE megadalla;
 python3.8 manage.py makemigrations && python3.8 manage.py migrate
 ```
 
+#### Run the app
+```bash
+python3.8 manage.py runserver
+```
