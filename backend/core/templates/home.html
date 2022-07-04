@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
 <div class=" container">
   <h1>Welcome to Mega Dalla</h1>
 </div> {% endblock %} 
+=======
+{%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
+<div class=" container">
+  <h1>Welcome to Mega Dalla</h1>
+  {% for item in items%}
+    <p> <a href="{{item.get_absolute_url}}">
+      {{item}}
+    </a></p>
+  {% endfor %}
+</div> {% endblock %}
+>>>>>>> 2c80d346c5f54c46362c98da7428cac9b4af6da7
