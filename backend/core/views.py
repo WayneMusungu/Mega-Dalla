@@ -109,4 +109,11 @@ def logout_user(request):
 
     return render(request,'welcome.html')
 
+def get_coupon(request, code):
+    try:
+        coupon = Coupon.objects.get(code=code)
+        return coupon
+    except ObjectDoesNotExist:
+        messages.info(request, "This coupon does not exist")
+        return redirect("core:checkout")
 
