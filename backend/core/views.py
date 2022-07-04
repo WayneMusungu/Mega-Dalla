@@ -62,6 +62,34 @@ def add_to_cart(request, slug):
 
     return redirect("core:product", slug=slug)
 
+def remove_from_cart(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+
+    if order_qs.exists():
+        order = order_qs[0]
+        print('order', order)
+        # Check if item is in cart
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            order.items.remove(order_item)
+            messages.success(request, "This item was removed from your cart")
+            return redirect("core:product", slug=slug)
+        else:
+            messages.success(request, "This item is not in your cart")
+            return redirect("core:product", slug=slug)
+    else:
+        # display message that order doesnt exist
+        messages.danger(request, "Item doesnt exist")
+        return redirect("core:product", slug=slug)
+
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user

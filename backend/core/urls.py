@@ -10,7 +10,7 @@ urlpatterns=[
 
     path('product/<slug>/', ItemDetailView.as_view(), name="product"),
     path('add-to-cart/<slug>/', views.add_to_cart, name="add-to-cart"),
-
+    path('remove-from-cart/<slug>/', views.remove_from_cart, name="remove-from-cart"),
 
     path('profile-update/',views.update_profile, name='update_profile'),
     path('accounts/', include('django_registration.backends.one_step.urls')),
