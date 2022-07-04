@@ -9,6 +9,7 @@ from django.views.generic import DetailView
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from core.forms import UserProfileForm
 
+
 # Create your views here.
 # def welcome(request):
 #     return HttpResponse('Welcome to the login page')
@@ -120,6 +121,21 @@ def get_coupon(request, code):
         messages.info(request, "This coupon does not exist")
         return redirect("core:checkout") 
     
-    
+class AddCouponView(View):
+    def post(self, *args, **kwargs):
+        form = CouponForm(self.request.POST or None)
+        if form.is_valid():
+            try:
+                code = form.cleaned_data.get('code')
+                order = Order.objects.get(
+                    user=self.request.user, ordered=False)
+                order.coupon = get_coupon(self.request, code)
+                order.save()
+                messages.success(self.request, "Successfully added coupon")
+                return redirect("core:checkout")
+            except ObjectDoesNotExist:
+                messages.info(self.request, "You do not have an active order")
+                return redirect("core:checkout")
+
     
 
