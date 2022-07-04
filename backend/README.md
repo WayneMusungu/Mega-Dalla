@@ -66,3 +66,5 @@ Run test using the following command
 ##### Link to Live Site
 
 # License
+
+Copyright (c) 2022 WayneMusungu
