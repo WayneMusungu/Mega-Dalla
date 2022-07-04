@@ -1,9 +1,14 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
 <div class=" container">
   <h1>Welcome to Mega Dalla</h1>
-  {% if item.discount_price %}
-  {{ item.discount_price }}
-  {% else %}
-  {{ item.price }}
-  {% endif %}
+
+ <h4 class="font-weight-bold blue-text">
+                  <strong>$
+                  {% if item.discount_price %}
+                  {{ item.discount_price }}
+                  {% else %}
+                  {{ item.price }}
+                  {% endif %}
+                  </strong>
+                </h4>
 </div> {% endblock %}
