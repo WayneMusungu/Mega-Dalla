@@ -1,4 +1,3 @@
-from pydoc import stripid
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib import messages
@@ -154,7 +153,7 @@ class PaymentView(View):
             userprofile = self.request.user.userprofile
             if userprofile.one_click_purchasing:
                 # fetch the users card list
-                cards = stripid.Customer.list_sources(
+                cards = stripe.Customer.list_sources(
                     userprofile.stripe_customer_id,
                     limit=3,
                     object='card'
