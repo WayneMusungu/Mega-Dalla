@@ -1,3 +1,4 @@
+from pydoc import stripid
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib import messages
@@ -8,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
 from django.views.generic import DetailView
+from django_countries import settings
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from core.forms import UserProfileForm
@@ -141,4 +143,31 @@ class AddCouponView(View):
                 return redirect("core:checkout")
 
     
-
+class PaymentView(View):
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        if order.billing_address:
+            context = {
+                'order': order,
+                'DISPLAY_COUPON_FORM': False,
+                'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUBLIC_KEY
+            }
+            userprofile = self.request.user.userprofile
+            if userprofile.one_click_purchasing:
+                # fetch the users card list
+                cards = stripid.Customer.list_sources(
+                    userprofile.stripe_customer_id,
+                    limit=3,
+                    object='card'
+                )
+                card_list = cards['data']
+                if len(card_list) > 0:
+                    # update the context with the default card
+                    context.update({
+                        'card': card_list[0]
+                    })
+            return render(self.request, "payment.html", context)
+        else:
+            messages.warning(
+                self.request, "You have not added a billing address")
+            return redirect("core:checkout")
