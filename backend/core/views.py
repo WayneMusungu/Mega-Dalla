@@ -118,5 +118,8 @@ def get_coupon(request, code):
         return coupon
     except ObjectDoesNotExist:
         messages.info(request, "This coupon does not exist")
-        return redirect("core:checkout")
+        return redirect("core:checkout") 
+    
+    
+    
 
