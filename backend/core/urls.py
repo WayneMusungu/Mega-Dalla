@@ -12,8 +12,8 @@ urlpatterns=[
     path('remove-from-cart/<slug>/', views.remove_from_cart, name="remove-from-cart"),
     path('profile-update/',views.update_profile, name='update_profile'),
     # path('accounts/', include('Account.urls')),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
-    path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
+    # path('accounts/', include('django_registration.backends.one_step.urls')),
+    # path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('logout/', views.logout_user, name='logout'),
+    # path('logout/', views.logout_user, name='logout'),
 ]
