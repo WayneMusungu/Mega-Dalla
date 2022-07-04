@@ -108,3 +108,5 @@ def update_profile(request):
 def logout_user(request):
 
     return render(request,'welcome.html')
+
+
