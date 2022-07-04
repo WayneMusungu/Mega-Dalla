@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django_registration.backends.one_step.views import RegistrationView
-from .views import ItemDetailView, PaymentView
+from .views import ItemDetailView
 
 
 urlpatterns=[
