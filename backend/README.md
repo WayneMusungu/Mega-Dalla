@@ -11,4 +11,14 @@
 - [Licence](#LICENSE)
 - [Authors Info](#Author-Info)
 
-## Description
+## Description 
+
+#### Technologies used
+    - Python 3.8
+    - HTML
+    - CSS
+    - Bootstrap 5
+    - Heroku
+    - Postgresql
+    - Django, Django Rest Framework
+
