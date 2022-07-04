@@ -87,4 +87,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## Authors Info
 
+* **Wayne Musungu** - [WayneMusungu](https://github.com/WayneMusungu)
+
+* **Clinton Wambugu** - [Clinton-dev](https://github.com/Clinton-dev)
+
+* **James Musembi** - [JamesMusembi](https://github.com/JamesMusembi)
+
+* **Victor Ondari** - [Victor Ondari](https://github.com/VictorOndari)
+
+* **Haimana Uta** - [haimy254](https://github.com/haimy254)
+
+[Go Back to the top](#MEGA-DALLA)
