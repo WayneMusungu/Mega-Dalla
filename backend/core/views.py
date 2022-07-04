@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views import View
 from django.views.generic import DetailView
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
-from .forms import  CouponForm, RefundForm, PaymentForm
+from .forms import  CouponForm, RefundForm
 from core.forms import UserProfileForm
 
 
