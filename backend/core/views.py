@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404,render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import DetailView
+from django.views.generic import DetailView,View 
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from core.forms import UserProfileForm
 
@@ -108,3 +108,11 @@ def update_profile(request):
 def logout_user(request):
 
     return render(request,'welcome.html')
+
+class OrderSummaryView(View):
+    
+   def get(self,*args,**kwargs):
+    return render(self.request, 'order_summary.html')
+
+
+    
