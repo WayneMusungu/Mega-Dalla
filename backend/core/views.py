@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404,render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.views import View
 from django.views.generic import DetailView
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
