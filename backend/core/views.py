@@ -114,7 +114,7 @@ def logout_user(request):
 
 class OrderSummaryView(LoginRequiredMixin,View):
     
-   def get(self,*args,**kwargs):
+    def get(self,*args,**kwargs):
         try:
             order = Order.objects.get(user=self.request.user,ordered=False)
             context = {
@@ -125,5 +125,10 @@ class OrderSummaryView(LoginRequiredMixin,View):
             messages.error(self.request,"you dont have an active order")
             return redirect("/")
 
+    def get_total_item_price(self):
+        return self.Quantity * self.item.price
+
+    def get_total_discount_item_price(self):
+        return self.Quantity * self.item.discount_item
 
     
