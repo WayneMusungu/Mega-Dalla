@@ -133,7 +133,7 @@ class OrderSummaryView(LoginRequiredMixin,View):
     def get_total_discount_item_price(self):
         return self.Quantity * self.item.discount_item
 
-
+#removing a single item from cart
 def remove_single_item_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
     order_qs = Order.objects.filter(
