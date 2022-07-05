@@ -1,13 +1,19 @@
 *{
     font-family: 'Poppins', sans-serif;
+    
 }
 
-/* .panelbody{
-
-} */
-.container{
+.panel-body{
+    background-color: #023E8A;
+    color: #FFCC33;
+    width: 350px;;
+    height: 50vh;
+    margin-top: 45px;
+    border-radius: 10px;
+}
+/* .container{
     background-color: white;
- }
+ } */
 
  .navbar{
     background-color: #023E8A;
