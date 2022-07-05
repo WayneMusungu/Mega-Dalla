@@ -11,6 +11,7 @@ PAYMENT_CHOICES = (
     ('C', 'Credit'),
     ('P', 'PayPal'),
     ('D', 'Debit'),
+    ('S', 'Stripe'),
 )
 
 
@@ -52,12 +53,11 @@ class CouponForm(forms.Form):
         'aria-label': 'Recipient\'s username',
         'aria-describedby': 'basic-addon2'
     }))
-from dataclasses import field
-from django.contrib.auth.models import User
-from django import forms
-from . models import UserProfile
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['bio','phone_number', 'fax_number']
+
+class PaymentForm(forms.Form):
+    stripeToken = forms.CharField(required=False)
+    save = forms.BooleanField(required=False)
+    use_default = forms.BooleanField(required=False)
+
+
