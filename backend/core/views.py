@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404,render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
@@ -109,10 +111,19 @@ def logout_user(request):
 
     return render(request,'welcome.html')
 
-class OrderSummaryView(View):
+
+class OrderSummaryView(LoginRequiredMixin,View):
     
    def get(self,*args,**kwargs):
-    return render(self.request, 'order_summary.html')
+        try:
+            order = Order.objects.get(user=self.request.user,ordered=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, 'order_summary.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request,"you dont have an active order")
+            return redirect("/")
 
 
     
