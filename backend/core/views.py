@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 from core.forms import UserProfileForm
+from django.core.exceptions import ObjectDoesNotExist
+from core.forms import UserProfileForm,CheckoutForm,CouponForm
+
 
 # Create your views here.
 # def welcome(request):
@@ -93,6 +96,40 @@ def remove_from_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
+    
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            form = CheckoutForm()
+            context = {
+                'form': form,
+                'couponform': CouponForm(),
+                'order': order,
+                'DISPLAY_COUPON_FORM': True
+            }
+
+            shipping_address_qs = Address.objects.filter(
+                user=self.request.user,
+                address_type='S',
+                default=True
+            )
+            if shipping_address_qs.exists():
+                context.update(
+                    {'default_shipping_address': shipping_address_qs[0]})
+
+            billing_address_qs = Address.objects.filter(
+                user=self.request.user,
+                address_type='B',
+                default=True
+            )
+            if billing_address_qs.exists():
+                context.update(
+                    {'default_billing_address': billing_address_qs[0]})
+            return render(self.request, "checkout.html", context)
+        except ObjectDoesNotExist:
+            messages.info(self.request, "You do not have an active order")
+            return redirect("core:checkout")
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
@@ -165,4 +202,9 @@ def remove_single_item_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
+<<<<<<< HEAD
     
+=======
+
+    
+>>>>>>> 55fd3db8ed1323e6b7171cb46577c60e56059f3d
