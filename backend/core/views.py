@@ -96,7 +96,8 @@ def remove_from_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
-    
+
+
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
