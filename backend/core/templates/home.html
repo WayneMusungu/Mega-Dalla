@@ -1,9 +1,9 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
 <main>
   <div class="container">
-
+    
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light mdb-color lighten-3 mt-3 mb-5">
 
       <!-- Navbar brand -->
       <span class="navbar-brand">Categories:</span>
@@ -23,6 +23,9 @@
             <a class="nav-link" href="#">All
               <span class="sr-only">(current)</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Electronics</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Shirts</a>
@@ -60,7 +63,7 @@
 
             <div class="view overlay">
               {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %}
-              <img src="{{ item.image.url }}" class="card-img-top">
+              <img src="{{ item.image.url }}" class="card-img-top" style="height: 300px;width: 300px;">
               <a href="{{ item.get_absolute_url }}">
                 <div class="mask rgba-white-slight"></div>
               </a>
