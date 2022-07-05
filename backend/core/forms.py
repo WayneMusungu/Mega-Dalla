@@ -7,6 +7,7 @@ from django_countries.widgets import CountrySelectWidget
 
 
 
+
 PAYMENT_CHOICES = (
     ('C', 'Credit'),
     ('P', 'PayPal'),
@@ -54,10 +55,5 @@ class CouponForm(forms.Form):
         'aria-describedby': 'basic-addon2'
     }))
 
-
-class PaymentForm(forms.Form):
-    stripeToken = forms.CharField(required=False)
-    save = forms.BooleanField(required=False)
-    use_default = forms.BooleanField(required=False)
 
 
