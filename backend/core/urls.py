@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django_registration.backends.one_step.views import RegistrationView
-from .views import ItemDetailView, OrderSummaryView
+from .views import ItemDetailView, OrderSummaryView, remove_single_item_cart
 
 
 urlpatterns=[
@@ -10,6 +10,7 @@ urlpatterns=[
     path('product/<slug>/', ItemDetailView.as_view(), name="product"),
     path('add-to-cart/<slug>/', views.add_to_cart, name="add-to-cart"),
     path('remove-from-cart/<slug>/', views.remove_from_cart, name="remove-from-cart"),
+    path('remove_single_item_cart/<slug>', remove_single_item_cart, name='remove_single_item_cart'),
     path('profile-update/',views.update_profile, name='update_profile'),
     path('order-summery/',OrderSummaryView.as_view(), name='order-summery'),
 
@@ -18,4 +19,5 @@ urlpatterns=[
     path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', views.logout_user, name='logout'),
+
 ]

@@ -49,10 +49,12 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.success(request, "Item quantity was updated")
+            return redirect("core:order-summery")
 
         else:
             messages.success(request, "Item was add to your cart")
             order.items.add(order_item)
+            return redirect("core:order-summery")
 
     else:
         ordered_date = timezone.now()
@@ -62,7 +64,7 @@ def add_to_cart(request, slug):
 
         order.items.add(order_item)
 
-    return redirect("core:product", slug=slug)
+    return redirect("core:order-summery")
 
 def remove_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -83,7 +85,7 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             messages.success(request, "This item was removed from your cart")
-            return redirect("core:product", slug=slug)
+            return redirect("core:order-summery")
         else:
             messages.success(request, "This item is not in your cart")
             return redirect("core:product", slug=slug)
@@ -131,4 +133,36 @@ class OrderSummaryView(LoginRequiredMixin,View):
     def get_total_discount_item_price(self):
         return self.Quantity * self.item.discount_item
 
+
+def remove_single_item_cart(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+
+    if order_qs.exists():
+        order = order_qs[0]
+        print('order', order)
+        # Check if item is in cart
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            if order_item.quantity >1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order_item.remove(order_item)
+            messages.success(request, "This item quantity was updated")
+            return redirect("core:order-summery")
+        else:
+            messages.success(request, "This item is not in your cart")
+            return redirect("core:product", slug=slug)
+    else:
+        # display message that order doesnt exist
+        messages.danger(request, "Item doesnt exist")
+        return redirect("core:product", slug=slug)
     
