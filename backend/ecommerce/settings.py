@@ -49,14 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'phonenumber_field',
-
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ]
-
-
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -85,11 +78,6 @@ TEMPLATES = [
             ],
         },
     },
-]
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
@@ -172,8 +160,3 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:9000",
 ]
-
-SITE_ID = 1
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_VERIFICATION = "none"
