@@ -202,9 +202,5 @@ def remove_single_item_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
-<<<<<<< HEAD
-    
-=======
 
     
->>>>>>> 55fd3db8ed1323e6b7171cb46577c60e56059f3d
