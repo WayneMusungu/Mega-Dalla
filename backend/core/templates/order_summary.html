@@ -25,7 +25,7 @@
             <span class="badge badge-secondary" style="color:blue"
               >Saving ${{ order_item.get_amount_saved }}</span
             >
-            {% else %} ${{order_item.get_total_item_price}} {% endif %}
+            {% else %} ${{order_item.get_total_item_price}}{% endif %}
             <a style="color:red" href='{% url "core:remove-from-cart" order_item.item.slug %}'><i class="fas fa-trash float-right"></i></a>
           </td>
         </tr>
@@ -45,7 +45,7 @@
         {% if object.get_total %}
         <tr>
           <td colspan="4"><b> Order Total </b></td>
-          <td>${{ object.get_total}}</td>
+          <td><b>${{ object.get_total}}</b></td>
         </tr>
         <tr>
           <td colspan="5">
