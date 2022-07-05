@@ -49,7 +49,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'phonenumber_field',
+
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -78,6 +85,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
@@ -137,13 +149,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-REGISTER_REDIRECT_URL='home'
-LOGIN_REDIRECT_URL='home'
+REGISTER_REDIRECT_URL='core:home'
+LOGIN_REDIRECT_URL='core:home'
 
 
-cloudinary.config( 
-  cloud_name = "dhmbjiskt", 
-  api_key = "335994163622817", 
+
+cloudinary.config(
+  cloud_name = "dhmbjiskt",
+  api_key = "335994163622817",
   api_secret = "yoEvtKnCdOIAOkF7vgcTnhcY4Rk",
   secure = True
 )
@@ -159,3 +172,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:9000",
 ]
+
+SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"

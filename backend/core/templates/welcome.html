@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEGA DALLA</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
@@ -39,40 +39,40 @@
         style="height: 50px; width: 50px; margin-left: 50px;"
       />
         <li class="nav-item">
-            
+
           <h2 style="font-family: 'Lobster Two', cursive; margin-top: 5px; margin-left: 5px; color: #1D3354;"aria-current="page">MEGA DALLA</h2>
         </li>
-       
+
       </ul>
       <div style="display: flex;">
-        
-        <a style="margin-right: 50px; " href="/accounts/login"><button  style="background-color: #1D3354; color: #FFFFFF;" class="btn btn btn-lg" role="button">LOGIN </button></a>
+
+        <a style="margin-right: 50px; " href="{% url 'account_login'%}"><button  style="background-color: #1D3354; color: #FFFFFF;" class="btn btn btn-lg" role="button">LOGIN </button></a>
    </div>
     </div>
   </div>
 </nav>
 
     <div  class="container">
-        
+
         <div class="info">
-         
+
             <h1  style="text-align: center; margin-right: 50px; font-family: 'Lobster Two', cursive; margin-top: 20px; color: #1D3354;"> MEGA DALLAS YOUR PLACE FOR EVERYTHING
             </h1>
             <h2 style="text-align: center; margin-right: 50px; font-family: 'Lobster Two', cursive; margin-top: 20px; color: #1D3354;"></h2>
-            
+
             <div  class="container">
               <div style="text-align: center;" class="center">
                   <img src="https://res.cloudinary.com/dhmbjiskt/image/upload/v1656777328/app-online-store_ocyy96.gif" alt="" style="width: 500px; height: 500px; border-radius: 10px;">
               </div>
             <div class="form-row text-center">
                 <div class="col-12">
-                 <a href="/accounts/register"><button style="background-color: #1D3354; color: #FFFFFF; margin-top: 20px;" class="btn btn btn-lg" role="button">SIGN UP</button></a></p>
+                 <a href="{% url 'account_signup'%}"><button style="background-color: #1D3354; color: #FFFFFF; margin-top: 20px;" class="btn btn btn-lg" role="button">SIGN UP</button></a></p>
                 </div>
             </div>
 
-           
+
         </div>
-    
+
     </div>
     {% block content %} {%endblock%} {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
