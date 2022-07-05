@@ -2,7 +2,22 @@
     font-family: 'Poppins', sans-serif;
     
 }
+/* start styling navbar */
+ .navbar{
+    background-color: #023E8A;
+    color: #FFCC33;
+ }
+ /* end of styling navbar */
 
+
+/* start styling welcome page */
+.bg{
+    background-color: white;
+}
+/* end of styling welcome */
+
+
+/* start styling login page */
 .panel-body{
     background-color: #023E8A;
     color: #FFCC33;
@@ -11,11 +26,12 @@
     margin-top: 45px;
     border-radius: 10px;
 }
-/* .container{
-    background-color: white;
- } */
-
- .navbar{
-    background-color: #023E8A;
-    color: #FFCC33;
+.login{
+    border-color:#FFCC33 ;
+    margin-left:  105px; 
+    border-radius: 10px;
+    color: black;
+    width: 100px;
+    height: 5vh;
  }
+/* end stylinf the login */

@@ -21,7 +21,7 @@
           
           <h2 cursive; margin-top: 5px; margin-left: 5px; color: #1D3354;"aria-current="page">MEGA DALLA</h2>
         </li>
-        <li> <a style="margin-left: 20px; " href="/accounts/login"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">HOME </button></a></li>
+        <li> <a style="margin-left: 20px; " href="/"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">HOME </button></a></li>
       </ul>
       <div style="display: flex;">
         
@@ -48,7 +48,7 @@
                         {% csrf_token %} {% bootstrap_form form%}
 
                         <div class="form-group">
-                            <input type="submit" style="background:#FFCC33; color:white;" value="Login">
+                            <input type="submit" style="background:#FFCC33; color:black;" value="Login" class="login">
                         </div>
 
                         <input type="hidden" name="next" value="{{next}}">
@@ -56,7 +56,7 @@
                     </form>
                 </br>
 
-                <p>Don't have an account? Create one <a href="/accounts/register">here.</a></p>
+                <p>Don't have an account? Create one <a href="/accounts/register" style="color: white;">here.</a></p>
 
                 </div>
 
