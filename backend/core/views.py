@@ -140,7 +140,7 @@ class CheckoutView(View):
             return redirect("core:checkout")
         
 
-def post(self, *args, **kwargs):
+    def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
