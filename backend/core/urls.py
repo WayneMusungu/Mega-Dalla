@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-from django.urls import path, include
-from . import views
-from django_registration.backends.one_step.views import RegistrationView
-=======
 
 from django.urls import path, include
 from . import views
 from django_registration.backends.one_step.views import RegistrationView
 from .views import ItemDetailView,CheckoutView
->>>>>>> 55fd3db8ed1323e6b7171cb46577c60e56059f3d
 from .views import ItemDetailView, OrderSummaryView, remove_single_item_cart
 
 
@@ -16,11 +10,8 @@ urlpatterns=[
     path('',views.welcome, name='welcome'),
     path('home/',views.home, name='home'),
     path('product/<slug>/', ItemDetailView.as_view(), name="product"),
-<<<<<<< HEAD
-=======
     path('checkout/', CheckoutView.as_view(), name='checkout'),
 
->>>>>>> 55fd3db8ed1323e6b7171cb46577c60e56059f3d
     path('add-to-cart/<slug>/', views.add_to_cart, name="add-to-cart"),
     path('remove-from-cart/<slug>/', views.remove_from_cart, name="remove-from-cart"),
     path('remove-single-item-cart/<slug>',remove_single_item_cart, name='remove-single-item-cart'),
