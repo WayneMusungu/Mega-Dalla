@@ -9,13 +9,6 @@ from django.views.generic import DetailView
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, User, UserProfile
 from core.forms import UserProfileForm,RegistrationForm,LoginForm
 
-from rest_framework import generics, viewsets
-from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserSerializer, UserProfileSerializer, LoginSerializer
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
-from rest_framework import permissions, status
-
 # Create your views here.
 # def welcome(request):
 #     return HttpResponse('Welcome to the login page')
