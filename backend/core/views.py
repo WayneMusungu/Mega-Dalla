@@ -401,7 +401,7 @@ class CheckoutView(View):
         
 class PaymentView(View):
     def get(self, *args, **kwargs):
-        return render
+        return render(self.request, "payment.html")
         
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
