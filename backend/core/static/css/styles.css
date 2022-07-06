@@ -2,6 +2,10 @@
     font-family: 'Poppins', sans-serif;
     
 }
+
+.my-5 h2 text-center text-dark fw-bold{
+    color: blue;
+}
 /* start styling navbar */
  .navbar{
     background-color: #023E8A;
