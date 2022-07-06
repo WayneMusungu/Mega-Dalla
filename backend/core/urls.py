@@ -14,6 +14,7 @@ urlpatterns=[
     path('remove-single-item-cart/<slug>',remove_single_item_cart, name='remove-single-item-cart'),
     path('profile-update/',update_profile, name='update_profile'),
     path('order-summery/',OrderSummaryView.as_view(), name='order-summery'),
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
 
     # path('accounts/', include('Account.urls')),
     path('accounts/', include('django_registration.backends.one_step.urls')),
