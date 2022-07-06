@@ -1,16 +1,13 @@
 
-from tabnanny import verbose
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from rest_framework.authtoken.models import Token
 from django.db import models
-# from django.db.models import Sum
 from cloudinary.models import CloudinaryField
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser
 
 CATEGORY_CHOICES = (
     ('C', 'Clothes'),
@@ -32,45 +29,15 @@ ADDRESS_CHOICES = (
     ('S', 'Shipping'),
 )
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)
-
-class UserManager(BaseUserManager):
-    def create_user(self, email, username=None, password=None, **extrafields):
-        if not email:
-            raise ValueError('Please provide an email address')
-        user= self.model(username=username, email= self.normalize_email(email), **extrafields)
-        user.set_password(password)
-        user.save(using = self._db)
-        
-        return user
-    
-    def create_superuser(self, email, password, username=None):
-        user = self.create_user(email, username, password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using = self._db)
-        return user
-
-class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=255,unique=True, null=True)
-    email= models.EmailField(max_length=255, unique=True)
-    name= models.CharField(max_length=100)
-    is_active= models.BooleanField('Customer',default=False)
-    is_staff= models.BooleanField('Vendor',default=False)
-    
-    objects = UserManager()
-    
-    USERNAME_FIELD ='email'
- 
- 
+class User(AbstractUser):
+    is_customer= models.BooleanField('Customer',default=False)
+    is_vendor= models.BooleanField('Vendor',default=False)
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
     stripe_customer_id = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=250)
+    email= models.EmailField(max_length=100)
     phone_number = PhoneNumberField()
     fax_number = PhoneNumberField(blank=True)
     one_click_purchasing = models.BooleanField(default=False)
@@ -79,10 +46,38 @@ class UserProfile(models.Model):
         return self.user.username
     
     @receiver(post_save, sender=User)
-    def update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UserProfile.objects.create(user=instance)
-        instance.profile.save()
+    def create_user(sender, instance, created, dispatch_uid="customer", **kwargs):
+        if instance.is_customer:
+            if created:
+                UserProfile.objects.get_or_create(user = instance)            
+        
+    @receiver(post_save, sender=User)
+    def save_admin(sender, instance, **kwargs):
+        if instance.is_customer:
+            instance.customer.save()
+    
+    def save_profile(self):
+            self.save()
+            
+class Vendor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
+    bio = models.CharField(max_length=250)
+    email= models.EmailField(max_length=100)
+    phone_number = models.IntegerField()
+
+    def __str__(self):
+        return self.user.username
+    
+    @receiver(post_save, sender=User)
+    def create_vendor(sender, instance, created, dispatch_uid="vendor", **kwargs):
+        if instance.is_vendor:
+            if created:
+                Vendor.objects.get_or_create(user = instance)            
+        
+    @receiver(post_save, sender=User)
+    def save_admin(sender, instance, **kwargs):
+        if instance.is_vendor:
+            instance.vendor.save()
     
     def save_profile(self):
             self.save()
@@ -223,11 +218,3 @@ class Refund(models.Model):
 
     def __str__(self):
         return f"{self.pk}"
-
-
-# def userprofile_receiver(sender, instance, created, *args, **kwargs):
-#     if created:
-#         userprofile = UserProfile.objects.create(user=instance)
-
-
-# post_save.connect(userprofile_receiver, sender=settings.AUTH_USER_MODEL)
