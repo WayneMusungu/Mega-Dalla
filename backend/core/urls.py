@@ -21,10 +21,10 @@ urlpatterns=[
     path('order-summery/',OrderSummaryView.as_view(), name='order-summery'),
 
     # path('accounts/', include('Account.urls')),
-    # path('accounts/', include('django_registration.backends.one_step.urls')),
-    # path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),  
+    path('accounts/', include('django_registration.backends.one_step.urls')),
+    path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', views.logout_user, name='logout'),
-    path('login/', views.login_user, name='login'),
-    path('register/', views.register, name='register'),
+
 ]
+
