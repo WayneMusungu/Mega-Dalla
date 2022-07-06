@@ -9,25 +9,25 @@ from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund
 
 # Create your views here.
 
-class CreateUserView(generics.CreateAPIView):
-    serializer_class = UserSerializer
+# class CreateUserView(generics.CreateAPIView):
+#     serializer_class = UserSerializer
 
-class LoginView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = LoginSerializer
+# class LoginView(generics.ListAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = LoginSerializer
 
-    def post(self, request, *args,**kwargs):
-        serializers = self.serializer_class(data=request.data,context={'request':request})
-        serializers.is_valid(raise_exception=True)
-        user = serializers.validated_data['user']
-        token,created = Token.objects.get_or_create(user=user)
-        return Response({
-            'token': token.key,
-            'username': user.username,
-            'id': user.id,
-            'email': user.email,
-            'name': user.name,
-        })
+#     def post(self, request, *args,**kwargs):
+#         serializers = self.serializer_class(data=request.data,context={'request':request})
+#         serializers.is_valid(raise_exception=True)
+#         user = serializers.validated_data['user']
+#         token,created = Token.objects.get_or_create(user=user)
+#         return Response({
+#             'token': token.key,
+#             'username': user.username,
+#             'id': user.id,
+#             'email': user.email,
+#             'name': user.name,
+#         })
         
 class ItemViewset(viewsets.ModelViewSet):
     queryset = Item.objects.all()
