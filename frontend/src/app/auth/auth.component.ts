@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthResData } from '../models/auth.model';
@@ -12,8 +12,8 @@ import { AuthResData } from '../models/auth.model';
 export class AuthComponent implements OnInit {
   
   isLoginMode=true;
-  signupForm: FormGroup;
-  loginForm: FormGroup;
+  signupForm: UntypedFormGroup;
+  loginForm: UntypedFormGroup;
   token: string;
   error:string=null;
   success:string=null;
@@ -21,19 +21,19 @@ export class AuthComponent implements OnInit {
   constructor(private authService: AuthService,private router: Router) { }
 
   ngOnInit(){
-    this.signupForm = new FormGroup({
-      'username': new FormControl(null,Validators.required),
-      'email': new FormControl(null,[Validators.required,Validators.email]),
-      'is_vendor': new FormControl(null),
-      'is_customer': new FormControl(null),
-      'passwords': new FormGroup({
-        'password': new FormControl(null,[Validators.required,Validators.minLength(6)]),
-        'confirmpassword': new FormControl(null, Validators.required)
+    this.signupForm = new UntypedFormGroup({
+      'username': new UntypedFormControl(null,Validators.required),
+      'email': new UntypedFormControl(null,[Validators.required,Validators.email]),
+      'is_vendor': new UntypedFormControl(null),
+      'is_customer': new UntypedFormControl(null),
+      'passwords': new UntypedFormGroup({
+        'password': new UntypedFormControl(null,[Validators.required,Validators.minLength(6)]),
+        'confirmpassword': new UntypedFormControl(null, Validators.required)
       },this.passwordCheck)
     });
-    this.loginForm = new FormGroup({
-      'username': new FormControl(null,Validators.required),
-      'password': new FormControl(null,[Validators.required,Validators.minLength(6)])
+    this.loginForm = new UntypedFormGroup({
+      'username': new UntypedFormControl(null,Validators.required),
+      'password': new UntypedFormControl(null,[Validators.required,Validators.minLength(6)])
     })
   }
 
@@ -75,7 +75,7 @@ export class AuthComponent implements OnInit {
     this.loginForm.reset()
 
   }
-  passwordCheck(control: FormGroup): {[s:string]:boolean}{
+  passwordCheck(control: UntypedFormGroup): {[s:string]:boolean}{
     if(control.get('password').value != control.get('confirmpassword').value){
       return {'notsame': true}
     }
