@@ -1,5 +1,6 @@
 
 
+
 {%extends "django_registration/base.html"%} {% load bootstrap5 %} {% block content %} 
 
 
@@ -15,7 +16,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="prof-body">
-                <form style="color: #000000;" action="/update_profile" method="post" enctype="multipart/form-data">
+                <form style="color: #000000;" action="{% url 'update_profile'%}" method="post" enctype="multipart/form-data">
 
                     {% csrf_token%} {% bootstrap_form form %}
                     <div class="form-group text-center">
@@ -26,5 +27,6 @@
             </div>
         </div>
     </div>
+    
 </div>
 {% endblock %}
