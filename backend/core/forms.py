@@ -12,6 +12,7 @@ PAYMENT_CHOICES = (
     ('C', 'Credit'),
     ('P', 'PayPal'),
     ('D', 'Debit'),
+    ('S', 'Stripe'),
 )
 
 
