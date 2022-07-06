@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, User, UserProfile
+from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile
 from django.contrib.auth.admin import UserAdmin as BaseUser
 from django.utils.translation import gettext as _
 
@@ -8,22 +8,22 @@ from django.utils.translation import gettext as _
 # Register your models here.
 
 
-class UserAdmin(BaseUser):
-    ordering = ['id']
-    list_display=   ['id', 'username', 'email', 'name']
-    list_display_links=['id','email']
-    fieldsets= (
-        (None, {'fields': ('username', 'email','password',)}),
-        (_('Personal info'), {'fields': ('name',)}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',)}),
-        (_('Imp dates'), {'fields': ('last_login',)})   
-    )
-    add_fieldsets= (
-        (None, {
-            'class': ('wide'),
-            'fields': ('name', 'email', 'password1','password2',)
-        }),
-    )
+# class UserAdmin(BaseUser):
+#     ordering = ['id']
+#     list_display=   ['id', 'username', 'email', 'name']
+#     list_display_links=['id','email']
+#     fieldsets= (
+#         (None, {'fields': ('username', 'email','password',)}),
+#         (_('Personal info'), {'fields': ('name',)}),
+#         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',)}),
+#         (_('Imp dates'), {'fields': ('last_login',)})   
+#     )
+#     add_fieldsets= (
+#         (None, {
+#             'class': ('wide'),
+#             'fields': ('name', 'email', 'password1','password2',)
+#         }),
+#     )
     
 
 
@@ -88,4 +88,4 @@ admin.site.register(Coupon)
 admin.site.register(Refund)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(UserProfile)
-admin.site.register(User,UserAdmin)
+# admin.site.register(User,UserAdmin)
