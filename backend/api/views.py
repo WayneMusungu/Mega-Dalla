@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import permissions, status
 
-from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, User, UserProfile
+from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 
 # Create your views here.
 
