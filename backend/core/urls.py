@@ -1,6 +1,7 @@
 
 from django.urls import path, include
 from . import views
+from django.conf import settings
 from django_registration.backends.one_step.views import RegistrationView
 from .views import ItemDetailView, OrderSummaryView,CheckoutView, remove_single_item_cart,update_profile
 
