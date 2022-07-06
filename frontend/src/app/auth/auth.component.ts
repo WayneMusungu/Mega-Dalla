@@ -22,17 +22,18 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(){
     this.signupForm = new FormGroup({
-      'name': new FormControl(null,Validators.required),
       'username': new FormControl(null,Validators.required),
       'email': new FormControl(null,[Validators.required,Validators.email]),
+      'is_vendor': new FormControl(null),
+      'is_customer': new FormControl(null),
       'passwords': new FormGroup({
-        'password': new FormControl(null,[Validators.required,Validators.minLength(8)]),
+        'password': new FormControl(null,[Validators.required,Validators.minLength(6)]),
         'confirmpassword': new FormControl(null, Validators.required)
       },this.passwordCheck)
     });
     this.loginForm = new FormGroup({
       'username': new FormControl(null,Validators.required),
-      'password': new FormControl(null,[Validators.required,Validators.minLength(8)])
+      'password': new FormControl(null,[Validators.required,Validators.minLength(6)])
     })
   }
 
@@ -44,7 +45,10 @@ export class AuthComponent implements OnInit {
     this.authService.signup({
       'email': this.signupForm.get('email').value,
       'username': this.signupForm.get('username').value,
+      'is_vendor': this.signupForm.get('is_vendor').value,
+      'is_customer': this.signupForm.get('is_customer').value,
       'password': this.signupForm.get('passwords.password').value
+
     })
     .subscribe(
       (data) => {

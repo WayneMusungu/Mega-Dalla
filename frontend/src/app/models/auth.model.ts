@@ -2,14 +2,17 @@ export interface signupModel{
     email: string,
     username: string,
     password: string,
-    
-    // roles:[]
+    is_vendor: boolean,
+    is_customer:boolean,
 }
 
 export interface AuthResData{
     id: number,
     email: string,
     username: string,
+    is_vendor: boolean,
+    is_customer:boolean,
+
     token?: string
 }
 
@@ -24,7 +27,8 @@ export class User{
         public id: number,
         public email: string,
         public username: string,
-        public token?: string,
+        public is_vendor: boolean,
+        public is_customer:boolean,
     ){}
     
 }
