@@ -58,7 +58,7 @@ Open [localhost:8000](http://127.0.0.1:8000/)
 Run test using the following command
 
 ```
- ./manage.py test dalla
+ ./manage.py test dallas
 ```
 
 [Go Back to the top](#MEGA-DALLA)
