@@ -4,22 +4,26 @@ import { catchError,tap} from 'rxjs/operators';
 import { BehaviorSubject, throwError } from "rxjs";
 import { Router } from "@angular/router";
 import { AuthResData, loginModel, signupModel, User } from "../models/auth.model";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
+
     user = new BehaviorSubject<User>(null);
+    private url = `${environment.apiUrl}`;
+
     constructor(private http: HttpClient,private router: Router){}
 
     signup(account: signupModel){
-        return this.http.post<AuthResData>('http://localhost:8000/api/signup/',account)
+        return this.http.post<AuthResData>(`${this.url}/signup/`,account)
         .pipe(catchError(this.handleError),tap((res)=>{
             console.log(res)
         }))
     }
 
     login(account: loginModel){
-        return this.http.post<AuthResData>('http://localhost:8000/api/login/',account)
+        return this.http.post<AuthResData>(`${this.url}/login/`,account)
         .pipe(catchError(this.handleError),tap((res)=>{
             this.handleAuth(res);
         }))
@@ -31,7 +35,7 @@ export class AuthService{
         if(!userData){
             return;
         }
-        const loadedUser = new User(userData.id,userData.email,userData.username,userData.token)
+        const loadedUser = new User(userData.id,userData.email,userData.username,userData.is_vendor, userData.is_customer)
         this.user.next(loadedUser)
         console.log(loadedUser)
         return;
@@ -56,7 +60,7 @@ export class AuthService{
     }
 
     private handleAuth(res: AuthResData){
-        const user = new User(res.id,res.email,res.username,res.token);
+        const user = new User(res.id,res.email,res.username,res.is_vendor, res.is_customer);
         this.user.next(user);
         console.log(user)
         localStorage.setItem('user',JSON.stringify(user))
