@@ -1,5 +1,5 @@
 from rest_framework import generics, viewsets
-from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserSerializer, UserProfileSerializer, LoginSerializer
+from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserProfileSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
