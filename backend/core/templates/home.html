@@ -1,6 +1,6 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
-<div class="container">
-  {% comment %} <h1>Welcome to Mega Dalla</h1>
+{% comment %}<div class="container">
+   <h1>Welcome to Mega Dalla</h1>
   {% for item in items%}
   <p><a href="{{item.get_absolute_url}}"> {{item}} </a></p>
   {% endfor %}

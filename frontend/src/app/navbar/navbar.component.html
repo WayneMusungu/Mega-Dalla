@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">MEGGA DALLA</a>
+      <a href="#" class="navbar-brand">Home</a>
+      <a href="#" class="navbar-brand">Category</a>
+      <a href="#" class="navbar-brand"></a>
+      <a href="#" class="navbar-brand">Cart</a>
+    </div>
+    <div class="navbar-end">
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active">
+          <a class="navbar-brand" style="cursor: pointer" routerLink="/profile"
+            >Profile</a
+          >
+        </li>
+        <li routerLinkActive>
+          <a style="cursor: pointer" routerLink="/auth" class="navbar-brand"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a class="navbar-brand" style="cursor: pointer">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- *ngIf="isAuthenticated" -->
+<!-- (click)="onLogout()" -->
+<!-- *ngIf="!isAuthenticated" -->
