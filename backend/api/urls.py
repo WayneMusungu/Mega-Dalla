@@ -14,8 +14,8 @@ router.register('coupon', views.CouponViewset, basename='coupon')
 router.register('refund', views.RefundViewset, basename='refund')
 
 urlpatterns=[
-    path('signup/',views.CreateUserView.as_view(),name='signup'),
-    path('login/',views.LoginView.as_view(),name='login')
+#     path('signup/',views.CreateUserView.as_view(),name='signup'),
+#     path('login/',views.LoginView.as_view(),name='login')
 ]
 
 urlpatterns += router.urls
