@@ -424,10 +424,10 @@ def register(request):
         if form.is_valid():
             user =  form.save()
             user.refresh_from_db()
-            user.profile.email = form.cleaned_data.get('email')
+            user.customer.email = form.cleaned_data.get('email')
             user.save()
             form.save()
-        return redirect(login_user)
+        return redirect('core:home')
     return render(request, 'auth/register.html',locals())
 
 def login_user(request):
@@ -435,7 +435,7 @@ def login_user(request):
     if request.method=='POST':
         form=LoginForm(request.POST)
         if form.is_valid():
-            usern=form.cleaned_data['email']
+            usern=form.cleaned_data['username']
             passw=form.cleaned_data['password']
             user=authenticate(request,username=usern,password=passw)
             if user is not None:
