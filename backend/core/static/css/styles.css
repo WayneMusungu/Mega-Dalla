@@ -1,6 +1,38 @@
-body{
-    background-color: brown;
+*{
+    font-family: 'Poppins', sans-serif;
+    
 }
-.container{
-    background-color: white;
+/* start styling navbar */
+ .navbar{
+    background-color: #023E8A;
+    color: #FFCC33;
  }
+ /* end of styling navbar */
+
+
+/* start styling welcome page */
+.bg{
+    background-color: white;
+}
+/* end of styling welcome */
+
+
+/* start styling login page */
+.panel-body{
+    background-color: #023E8A;
+    color: #FFCC33;
+    width: 350px;;
+    height: 50vh;
+    margin-top: 45px;
+    border-radius: 10px;
+}
+.login{
+    border-color:#FFCC33 ;
+    margin-left:  105px; 
+    border-radius: 10px;
+    color: black;
+    width: 100px;
+    height: 5vh;
+ }
+/* end stylinf the login */
+
