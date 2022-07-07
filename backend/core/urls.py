@@ -2,11 +2,7 @@
 from django.urls import path, include
 from . import views
 from django_registration.backends.one_step.views import RegistrationView
-<<<<<<< HEAD
-from .views import ItemDetailView, OrderSummaryView, remove_single_item_cart,update_profile, CheckoutView
-=======
 from .views import CheckoutView, ItemDetailView, OrderSummaryView, remove_single_item_cart,update_profile
->>>>>>> a60129a9cc93f7bcfdade7a65a69f17b7a29f30b
 
 
 urlpatterns=[
