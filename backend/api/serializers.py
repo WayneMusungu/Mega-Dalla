@@ -59,17 +59,5 @@ class AddressSerializer(serializers.ModelSerializer):
         model=Address
         fields="__all__"
 
-class PaymentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Payment
-        fields=['user','amount','timestamp']
         
-class CouponSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Coupon
-        fields="__all__"
-        
-class RefundSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Refund
-        fields="__all__"
+

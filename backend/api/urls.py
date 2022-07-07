@@ -9,9 +9,7 @@ router.register('profile',views.ProfileViewset, basename='profile')
 router.register('orderitem', views.OrderItemViewset, basename='orderitem')
 router.register('order', views.OrderViewset, basename='order')
 router.register('address', views.AddressViewset, basename='address')
-router.register('payment', views.PaymentViewset, basename='payment')
-router.register('coupon', views.CouponViewset, basename='coupon')
-router.register('refund', views.RefundViewset, basename='refund')
+
 
 urlpatterns=[
 #     path('signup/',views.CreateUserView.as_view(),name='signup'),
