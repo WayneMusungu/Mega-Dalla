@@ -48,14 +48,17 @@
           <td><b>${{ object.get_total}}</b></td>
         </tr>
         <tr>
+          <div class"d-grid gap-2 d-md-flex justify-content-md-end">
           <td colspan="5">
-            <a class="btn btn-warning float-right ml-2" href="/checkout/">
+            
+            <a class="btn btn-primary me-md-2" href="/checkout/">
               Proceed to checkout</a
             >
-            <a class="btn btn-warning float-right" href="{% url 'core:home' %}">
+            <a class="btn btn-warning" href="{% url 'core:home' %}">
               Continue Shopping
             </a>
           </td>
+        </div>
         </tr>
         {% endif %}
       </tbody>

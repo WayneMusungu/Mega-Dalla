@@ -31,9 +31,10 @@
 .login{
     border-color:#FFCC33 ;
     margin-left:  105px; 
-    border-radius: 10px;
+    border-radius: 25px;
     color: black;
     width: 100px;
     height: 5vh;
+    
  }
 /* end stylinf the login */
