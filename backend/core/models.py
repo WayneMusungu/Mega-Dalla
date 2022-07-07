@@ -112,8 +112,8 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
     shipping_address = models.ForeignKey(
         'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
-    # billing_address = models.ForeignKey(
-    #     'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey(
+        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(
         Transaction, on_delete=models.SET_NULL, blank=True, null=True)
     # coupon = models.ForeignKey(

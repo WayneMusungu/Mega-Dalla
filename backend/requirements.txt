@@ -9,12 +9,13 @@ confusable-homoglyphs==3.2.0
 crispy-bootstrap5==0.6
 cryptography==37.0.2
 defusedxml==0.7.1
-Django==4.0.5
+Django==4.0.6
 django-allauth==0.51.0
 django-bootstrap-v5==1.0.11
 django-cors-headers==3.13.0
 django-countries==7.3.2
 django-crispy-forms==1.14.0
+django-extensions==3.1.5
 django-filter==22.1
 django-phonenumber-field==6.3.0
 django-registration==3.3
@@ -38,4 +39,5 @@ sqlparse==0.4.2
 stripe==3.5.0
 typing-extensions==4.3.0
 urllib3==1.26.9
+Werkzeug==2.0.3
 zipp==3.8.0
