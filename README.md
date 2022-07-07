@@ -13,7 +13,7 @@
 
 ## Description 
 
-
+Mega Dalla is on a mission to make shopping well effortless for everyone, everywhere. Our service is connect vendors with customers around the globe and enable vendors to reach more customers and biuld their business.
 
 #### Technologies used
     - Python 3.8
