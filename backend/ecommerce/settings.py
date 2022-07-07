@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'phonenumber_field',
     'api',
+    'django_extensions',
     
 ]
 
