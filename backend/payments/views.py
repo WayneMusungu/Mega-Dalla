@@ -4,14 +4,16 @@ from django.utils.crypto import get_random_string
 from python_flutterwave import payment
 from django.http import HttpResponseRedirect, HttpResponse
 
-from core.models import UserProfile
+from core.models import UserProfile, Order
 from .models import Transaction
 from django.contrib.auth.decorators import login_required
 
-payment.token = 'FLWSECK_TEST-4af55157dec2cb72963ac71149196fe9-X'
+
+payment.token = 'FLWSECK_TEST-c705a4deea97a1a5df4f6049b8c96a07-X'
 
 @login_required
 def initiate_payment(request):
+    orders = Order.objects.get(user=request.user)
     profile = UserProfile.objects.get(user=request.user)
     transaction = Transaction(user=request.user)
     transaction.trans_ref = get_random_string(12)
@@ -20,7 +22,8 @@ def initiate_payment(request):
     protocol = f'https' if request.is_secure() else 'http'
     callback_url = f"{protocol}://{request.get_host()}{reverse('payments:callback')}"
     
-    uri = payment.initiate_payment(tx_ref=transaction.trans_ref, amount=10, currency='KES', redirect_url=callback_url, 
+    
+    uri = payment.initiate_payment(tx_ref=transaction.trans_ref, amount=orders.get_total(), currency='KES', redirect_url=callback_url, 
                                    customer_name=request.user.username, customer_email=request.user.email, customer_phone_number=profile.phone_number
                                    , payment_options='mpesa', title='Mega Dalla',
                                    description='payment for goods')

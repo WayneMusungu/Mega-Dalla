@@ -35,11 +35,15 @@ class OrderAdmin(admin.ModelAdmin):
                     'being_delivered',
                     'received',
                     'shipping_address',
+                    'billing_address',
+                    'payment',
                     
                     ]
     list_display_links = [
         'user',
         'shipping_address',
+        'billing_address',
+        'payment',
         
     ]
     list_filter = ['ordered',
@@ -50,7 +54,8 @@ class OrderAdmin(admin.ModelAdmin):
         'user__username',
         
     ]
-    
+   
+
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -58,6 +63,7 @@ class AddressAdmin(admin.ModelAdmin):
         'user',
         'street_address',
         'apartment_address',
+        'billing_address',
         'country',
         'zip',
         'address_type',

@@ -11,7 +11,7 @@ from django.views.generic import DetailView,View
 from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
-from core.forms import UserProfileForm,CheckoutForm,CouponForm
+from core.forms import UserProfileForm,CheckoutForm
 
 
 # Create your views here.
@@ -117,7 +117,7 @@ class CheckoutView(View):
             form = CheckoutForm()
             context = {
                 'form': form,
-                'couponform': CouponForm(),
+                # 'couponform': CouponForm(),
                 'order': order,
                 'DISPLAY_COUPON_FORM': True
             }
@@ -391,6 +391,8 @@ class CheckoutView(View):
                     return redirect('core:payment', payment_option='stripe')
                 elif payment_option == 'P':
                     return redirect('core:payment', payment_option='paypal')
+                elif payment_option == 'M':
+                    return redirect('payments:initiate_payment')
                 else:
                     messages.warning(
                         self.request, "Invalid payment option selected")
