@@ -11,12 +11,12 @@
                 <div class="sign">
                 <div class="panel-body" style="background:#023E8A;">
                     <div class="panel-heading">
-                        <h3 class="text-center" style="color: #FFCC33;" >Sign Up</h3>
+                        <h3 class="text-center mt-2 pt-2" style="color: #FFCC33;" >Sign Up</h3>
                     </div>
                     <form style="color: #FFCC33;" action="/accounts/register/" method="post">
                         {% csrf_token %} {% bootstrap_form form %}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm"  style="background:#FFCC33; color:black;" value="Sign Up">
+                            <input type="submit" class="btn btn-primary d-flex justify-content-center btn-sm"  style="background:#FFCC33; color:black;" value="Sign Up">
                         </div>
 
                         <input type="hidden" name="next" value="{{next}}">
