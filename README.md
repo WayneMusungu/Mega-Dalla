@@ -15,6 +15,7 @@
 
 #### Technologies used
     - Python 3.8
+    - Angular
     - HTML
     - CSS
     - Bootstrap 5
