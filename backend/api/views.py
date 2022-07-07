@@ -1,11 +1,11 @@
 from rest_framework import generics, viewsets
-from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserProfileSerializer
+from .serializers import AddressSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, UserProfileSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import permissions, status
 
-from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from core.models import Item, OrderItem, Order, Address,  UserProfile
 
 # Create your views here.
 
@@ -53,14 +53,3 @@ class OrderViewset(viewsets.ModelViewSet):
 class AddressViewset(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class= AddressSerializer
-class PaymentViewset(viewsets.ModelViewSet):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-    
-class  CouponViewset(viewsets.ModelViewSet):
-    queryset = Coupon.objects.all()
-    serializer_class= CouponSerializer
-    
-class RefundViewset(viewsets.ModelViewSet):
-    queryset = Refund.objects.all()
-    serializer_class= RefundSerializer

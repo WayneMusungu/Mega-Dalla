@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.forms import UserProfileForm,CheckoutForm,CouponForm
@@ -399,9 +399,7 @@ class CheckoutView(View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")
         
-class PaymentView(View):
-    def get(self, *args, **kwargs):
-        return render(self.request, "payment.html")
+
         
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
