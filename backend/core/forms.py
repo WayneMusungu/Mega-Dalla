@@ -32,6 +32,7 @@ class RegistrationForm( UserCreationForm, forms.ModelForm):
     def create(self,validated_data):
         return get_user_model().objects.create_user(**validated_data)
 
+
 class LoginForm(forms.Form):
     email=forms.CharField(max_length=50)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
