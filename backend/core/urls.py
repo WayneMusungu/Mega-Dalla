@@ -19,9 +19,11 @@ urlpatterns=[
 
 
     # path('accounts/', include('Account.urls')),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
-    path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
+    # path('accounts/', include('django_registration.backends.one_step.urls')),
+    # path('accounts/', include(('django.contrib.auth.urls', 'core'), namespace='login')),
     # path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', views.register),
+    path('login/', views.login_user),
     path('logout/', views.logout_user, name='logout'),
 
 ]
