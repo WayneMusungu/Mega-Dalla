@@ -51,3 +51,10 @@ form-group{
 .card-body1{
     background-color: #E5E5E5;
   }
+
+  .product-card {
+    width: 280px;
+    margin: 1rem auto;
+    position: relative;
+    box-shadow: 0 2px 7px #DFDFDF;
+  }

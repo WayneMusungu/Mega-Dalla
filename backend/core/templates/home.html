@@ -73,7 +73,7 @@
       <div class="row wow fadeIn">
         {% for item in items %}
         <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
+          <div class="product-card">
             <div class="view overlay">
               
               <img
@@ -84,7 +84,7 @@
                 %}
                 <img
                 src="{{ item.image.url }}"
-                class="card-img-thumbnail"
+                class="img-thumbnail"
                 style="height: 300px; width: 300px"
               />
               <a href="{{ item.get_absolute_url }}">
