@@ -47,3 +47,7 @@ form-group{
 .container{
     border-radius: 10px;
 }
+
+.card-body1{
+    background-color: #E5E5E5;
+  }
