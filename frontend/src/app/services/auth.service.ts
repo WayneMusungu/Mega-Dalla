@@ -79,9 +79,9 @@ export class AuthService{
 
 
     logout(){
-        this.user.next(null)
-        this.removeLocalStorage();
-        this.route.navigate(['/auth'])
+      this.user.next(null)
+      this.removeLocalStorage();
+      this.route.navigate(['/auth'])
     }
 
   setToken(token: any): void {
