@@ -35,7 +35,6 @@ class AddressAdmin(admin.ModelAdmin):
         'user',
         'street_address',
         'apartment_address',
-        'billing_address',
         'country',
         'zip',
         'address_type',
