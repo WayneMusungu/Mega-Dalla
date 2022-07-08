@@ -31,7 +31,7 @@ ADDRESS_CHOICES = (
 )
 
 class User(AbstractUser):
-    is_customer= models.BooleanField('Customer',default=False)
+    is_customer= models.BooleanField('Customer',default=True)
     is_vendor= models.BooleanField('Vendor',default=False)
 
 class UserProfile(models.Model):

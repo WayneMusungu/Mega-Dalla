@@ -27,7 +27,7 @@ def is_valid_form(values):
             valid = False
     return valid
 
-@login_required
+@login_required(login_url='/login')
 def home(request):
     items = Item.objects.all()
     print(items)
@@ -403,7 +403,7 @@ class CheckoutView(View):
         
 
         
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/login/')
 def update_profile(request):
     current_user = request.user
     form = UserProfileForm(request.POST, request.FILES)
@@ -450,9 +450,8 @@ def login_user(request):
 
 @login_required(login_url='/login')
 def logout_user(request):
-
-    return render(request,'welcome.html') 
-
+    logout(request)
+    return redirect('core:welcome')
 
 class OrderSummaryView(LoginRequiredMixin,View):
     
