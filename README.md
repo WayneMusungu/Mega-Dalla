@@ -106,6 +106,8 @@ SOFTWARE.
 
 
 # Project layout 
+
+
 # ADMIN Dashbord
 ![MEGA-DALLA](backend/static/images/dashboard.png)
 
