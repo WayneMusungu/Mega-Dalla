@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated:boolean = false;
+  private userSub: Subscription;
 
-  ngOnInit(): void {
+  constructor(public authService: AuthService) { }
+
+  ngOnInit() {
+    this.userSub= this.authService.user.subscribe((user) =>{
+      this.isAuthenticated=!user? false : true;
+    })
+  }
+  ngOnDestroy() {
+      this.userSub.unsubscribe();
+  }
+  onLogout(){
+    this.authService.logout();
   }
 
 }

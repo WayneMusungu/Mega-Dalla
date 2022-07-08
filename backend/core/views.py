@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
 from .models import Item, OrderItem, Order, Address, UserProfile
-from core.forms import UserProfileForm
+from core.forms import LoginForm, RegistrationForm, UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.forms import UserProfileForm,CheckoutForm
 
@@ -417,11 +417,41 @@ def update_profile(request):
             form = UserProfileForm()
     return render(request, 'profile-update.html', {'form': form})
 
-@login_required
+def register(request):
+    form = RegistrationForm
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user =  form.save()
+            user.refresh_from_db()
+            user.customer.email = form.cleaned_data.get('email')
+            user.save()
+            form.save()
+        return redirect('core:welcome')
+    return render(request, 'auth/register.html',locals())
+
+def login_user(request):
+    form=LoginForm()
+    if request.method=='POST':
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            usern=form.cleaned_data['username']
+            passw=form.cleaned_data['password']
+            user=authenticate(request,username=usern,password=passw)
+            if user is not None:
+                login(request,user)
+                return redirect('core:home')
+            else:
+                return HttpResponse('Such a user does not exist')
+        else:
+            return HttpResponse("Form is not Valid")
+    
+    return render(request,'auth/login.html',locals())
+
+@login_required(login_url='/login')
 def logout_user(request):
-
-    return render(request,'welcome.html') 
-
+    logout(request)
+    return redirect('core:welcome')
 
 class OrderSummaryView(LoginRequiredMixin,View):
     
