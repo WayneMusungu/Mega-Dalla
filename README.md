@@ -107,6 +107,7 @@ SOFTWARE.
 
 # Project layout 
 
+## Admin Dashboard Credentials
 
 # ADMIN Dashbord
 ![MEGA-DALLA](backend/static/images/dashboard.png)
