@@ -1,12 +1,13 @@
-from django.conf import settings
-from django.dispatch import receiver
+
+import email
 from django.db.models.signals import post_save
+from django.conf import settings
 from django.db import models
+from django.db.models import Sum
 from cloudinary.models import CloudinaryField
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import AbstractUser
 
 from payments.models import Transaction
 
@@ -30,56 +31,19 @@ ADDRESS_CHOICES = (
     ('S', 'Shipping'),
 )
 
-class User(AbstractUser):
-    is_customer= models.BooleanField('Customer',default=True)
-    is_vendor= models.BooleanField('Vendor',default=False)
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
-    bio = models.CharField(max_length=250)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # stripe_customer_id = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(null=True, max_length=250)
+    bio = models.CharField(max_length=250)
     phone_number = PhoneNumberField()
+    # fax_number = PhoneNumberField(blank=True)
     one_click_purchasing = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
-    
-    @receiver(post_save, sender=User)
-    def create_user(sender, instance, created, dispatch_uid="customer", **kwargs):
-        if instance.is_customer:
-            if created:
-                UserProfile.objects.get_or_create(user = instance)            
-        
-    @receiver(post_save, sender=User)
-    def save_admin(sender, instance, **kwargs):
-        if instance.is_customer:
-            instance.customer.save()
-    
-    def save_profile(self):
-            self.save()
-            
-class Vendor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
-    bio = models.CharField(max_length=250)
-    email= models.EmailField(max_length=100)
-    phone_number = PhoneNumberField()
-
-    def __str__(self):
-        return self.user.username
-    
-    @receiver(post_save, sender=User)
-    def create_vendor(sender, instance, created, dispatch_uid="vendor", **kwargs):
-        if instance.is_vendor:
-            if created:
-                Vendor.objects.get_or_create(user = instance)            
-        
-    @receiver(post_save, sender=User)
-    def save_admin(sender, instance, **kwargs):
-        if instance.is_vendor:
-            instance.vendor.save()
-    
-    def save_profile(self):
-            self.save()
 
 
 class Item(models.Model):
@@ -114,7 +78,8 @@ class Item(models.Model):
 
 
 class OrderItem(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -138,16 +103,25 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    # ref_code = models.CharField(max_length=20, blank=True, null=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
-    shipping_address = models.ForeignKey('Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
-    payment = models.ForeignKey(Transaction, on_delete=models.SET_NULL, blank=True, null=True)
+    shipping_address = models.ForeignKey(
+        'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey(
+        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(
+        Transaction, on_delete=models.SET_NULL, blank=True, null=True)
+    # coupon = models.ForeignKey(
+    #     'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
     being_delivered = models.BooleanField(default=False)
     received = models.BooleanField(default=False)
-
+    # refund_requested = models.BooleanField(default=False)
+    # refund_granted = models.BooleanField(default=False)
 
     '''
     1. Item added to cart
@@ -167,11 +141,14 @@ class Order(models.Model):
         total = 0
         for order_item in self.items.all():
             total += order_item.get_final_price()
+        # if self.coupon:
+        #     total -= self.coupon.amount
         return total
 
 
 class Address(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
     country = CountryField(multiple=False)
@@ -184,3 +161,40 @@ class Address(models.Model):
 
     class Meta:
         verbose_name_plural = 'Addresses'
+
+
+# class Payment(models.Model):
+#     stripe_charge_id = models.CharField(max_length=50)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                              on_delete=models.SET_NULL, blank=True, null=True)
+#     amount = models.FloatField()
+#     timestamp = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return self.user.username
+
+
+# class Coupon(models.Model):
+#     code = models.CharField(max_length=15)
+#     amount = models.FloatField()
+
+#     def __str__(self):
+#         return self.code
+
+
+# class Refund(models.Model):
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+#     reason = models.TextField()
+#     accepted = models.BooleanField(default=False)
+#     email = models.EmailField()
+
+#     def __str__(self):
+#         return f"{self.pk}"
+
+
+def userprofile_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        userprofile = UserProfile.objects.create(user=instance)
+
+
+post_save.connect(userprofile_receiver, sender=settings.AUTH_USER_MODEL)

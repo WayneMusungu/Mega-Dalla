@@ -24,26 +24,24 @@ class UserProfileForm(forms.ModelForm):
         
         
 class RegistrationForm( UserCreationForm, forms.ModelForm):
-    username = forms.CharField(max_length=30, required=True)
-    email=forms.EmailField(max_length=100, required=True)
     class Meta:
         model = get_user_model()
-        fields =('username','email', 'is_customer','is_vendor')
-        extra_kwargs = {'password':{'write_only':True,'min_length':6}}
+        fields =('email','username', 'is_active','is_staff')
+        extra_kwargs = {'password':{'write_only':True,'min_length':8}}
 
     def create(self,validated_data):
         return get_user_model().objects.create_user(**validated_data)
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=30, required=True)
+    email=forms.CharField(max_length=50)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
     def validate(self,attrs):
-        username = attrs.get('username')
+        email = attrs.get('email')
         password = attrs.get('password')
 
         user = authenticate(
             request=self.context.get('request'),
-            username=username,
+            email=email,
             password=password
         )
         if not user:

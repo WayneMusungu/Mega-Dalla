@@ -11,7 +11,7 @@ from django.views.generic import DetailView,View
 from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
-from core.forms import UserProfileForm,CheckoutForm, RegistrationForm, LoginForm
+from core.forms import UserProfileForm,CheckoutForm
 
 
 # Create your views here.
@@ -27,7 +27,7 @@ def is_valid_form(values):
             valid = False
     return valid
 
-@login_required(login_url='/login')
+@login_required
 def home(request):
     items = Item.objects.all()
     print(items)
@@ -403,7 +403,7 @@ class CheckoutView(View):
         
 
         
-@login_required(login_url='/login/')
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
     form = UserProfileForm(request.POST, request.FILES)
@@ -417,41 +417,11 @@ def update_profile(request):
             form = UserProfileForm()
     return render(request, 'profile-update.html', {'form': form})
 
-def register(request):
-    form = RegistrationForm
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user =  form.save()
-            user.refresh_from_db()
-            user.customer.email = form.cleaned_data.get('email')
-            user.save()
-            form.save()
-        return redirect('core:home')
-    return render(request, 'auth/register.html',locals())
-
-def login_user(request):
-    form=LoginForm()
-    if request.method=='POST':
-        form=LoginForm(request.POST)
-        if form.is_valid():
-            usern=form.cleaned_data['username']
-            passw=form.cleaned_data['password']
-            user=authenticate(request,username=usern,password=passw)
-            if user is not None:
-                login(request,user)
-                return redirect('core:home')
-            else:
-                return HttpResponse('Such a user does not exist')
-        else:
-            return HttpResponse("Form is not Valid")
-    
-    return render(request,'auth/login.html',locals())
-
-@login_required(login_url='/login')
+@login_required
 def logout_user(request):
-    logout(request)
-    return redirect('core:welcome')
+
+    return render(request,'welcome.html') 
+
 
 class OrderSummaryView(LoginRequiredMixin,View):
     

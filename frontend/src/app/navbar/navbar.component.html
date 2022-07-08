@@ -10,33 +10,23 @@
     <div class="navbar-end">
       <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active">
-          <a
-            class="navbar-brand"
-            style="cursor: pointer"
-            routerLink="/profile"
-            *ngIf="isAuthenticated"
+          <a class="navbar-brand" style="cursor: pointer" routerLink="/profile"
             >Profile</a
           >
         </li>
         <li routerLinkActive>
-          <a
-            style="cursor: pointer"
-            routerLink="/auth"
-            class="navbar-brand"
-            *ngIf="!isAuthenticated"
+          <a style="cursor: pointer" routerLink="/auth" class="navbar-brand"
             >Login</a
           >
         </li>
         <li>
-          <a
-            class="navbar-brand"
-            style="cursor: pointer"
-            (click)="onLogout()"
-            *ngIf="isAuthenticated"
-            >Logout</a
-          >
+          <a class="navbar-brand" style="cursor: pointer">Logout</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- *ngIf="isAuthenticated" -->
+<!-- (click)="onLogout()" -->
+<!-- *ngIf="!isAuthenticated" -->
