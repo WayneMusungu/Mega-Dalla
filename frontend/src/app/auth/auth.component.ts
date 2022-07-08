@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { AuthResData } from '../models/auth.model';
+import { User } from '../models/auth.model';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +14,6 @@ export class AuthComponent implements OnInit {
   isLoginMode=true;
   signupForm: UntypedFormGroup;
   loginForm: UntypedFormGroup;
-  token: string;
   error:string=null;
   success:string=null;
 
@@ -31,6 +30,7 @@ export class AuthComponent implements OnInit {
         'confirmpassword': new UntypedFormControl(null, Validators.required)
       },this.passwordCheck)
     });
+
     this.loginForm = new UntypedFormGroup({
       'username': new UntypedFormControl(null,Validators.required),
       'password': new UntypedFormControl(null,[Validators.required,Validators.minLength(6)])
@@ -41,8 +41,7 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
   onSignup(){
-    console.log(this.signupForm)
-    this.authService.signup({
+    this.authService.signupUser({
       'email': this.signupForm.get('email').value,
       'username': this.signupForm.get('username').value,
       'is_vendor': this.signupForm.get('is_vendor').value,
@@ -54,7 +53,7 @@ export class AuthComponent implements OnInit {
       (data) => {
         console.log(data)
         this.isLoginMode = true;
-        this.success='Signup was successfull';
+        this.success='Signup was successful';
         this.error = null;
       },(errorRes)=>{
         console.log(errorRes);
@@ -63,12 +62,11 @@ export class AuthComponent implements OnInit {
     )
   }
   onLogin(){
-    console.log(this.loginForm)
-    this.authService.login(this.loginForm.value).subscribe((data) => {
-        this.token = data.token
-        console.log(data)
-        this.router.navigate(['/profile'])
-      },(errorRes)=>{
+    this.authService.loginUser(this.loginForm.value)
+    .subscribe((response) => {
+        this.router.navigate(['/profile/']);
+      }
+      ,(errorRes)=>{
         this.error=errorRes;
       }
     )
@@ -81,5 +79,15 @@ export class AuthComponent implements OnInit {
     }
     return null;
   }
+
+
+  // onLogin() {
+  //   this.authService.loginUser(this.user).subscribe((user) => {
+  //     console.log(user);
+  //   });
+  // }
+
+
+
 
 }
