@@ -12,34 +12,39 @@ PAYMENT_CHOICES = (
     ('P', 'PayPal'),
     ('D', 'Debit'),
     ('S', 'Stripe'),
+    ('M', 'Mpesa'),
+    
 )
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['bio','phone_number', 'fax_number']
+        fields = ['bio','phone_number']
         
         
 class RegistrationForm( UserCreationForm, forms.ModelForm):
+    username = forms.CharField(max_length=30, required=True)
+    email=forms.EmailField(max_length=100, required=True)
     class Meta:
         model = get_user_model()
-        fields =('email','username', 'is_active','is_staff')
-        extra_kwargs = {'password':{'write_only':True,'min_length':8}}
+        fields =('username','email', 'is_customer','is_vendor')
+        extra_kwargs = {'password':{'write_only':True,'min_length':6}}
 
     def create(self,validated_data):
         return get_user_model().objects.create_user(**validated_data)
 
+
 class LoginForm(forms.Form):
-    email=forms.CharField(max_length=50)
+    username = forms.CharField(max_length=30, required=True)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
     def validate(self,attrs):
-        email = attrs.get('email')
+        username = attrs.get('username')
         password = attrs.get('password')
 
         user = authenticate(
             request=self.context.get('request'),
-            email=email,
+            username=username,
             password=password
         )
         if not user:
@@ -71,13 +76,12 @@ class CheckoutForm(forms.Form):
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
     
-class CouponForm(forms.Form):
-    code = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Promo code',
-        'aria-label': 'Recipient\'s username',
-        'aria-describedby': 'basic-addon2'
-    }))
+# 
 
+    
+# class PaymentForm(forms.Form):
+#     stripeToken = forms.CharField(required=False)
+#     save = forms.BooleanField(required=False)
+#     use_default = forms.BooleanField(required=False)
 
 

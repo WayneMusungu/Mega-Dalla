@@ -1,35 +1,25 @@
-from rest_framework import generics, viewsets
-from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserProfileSerializer
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
+from rest_framework import generics, viewsets, views
 from rest_framework.response import Response
 from rest_framework import permissions, status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 
-from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from payments.models import Transaction
+
+from .serializers import AddressSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer,  TransactionSerializer, UserSerializer, UserProfileSerializer, VendorSerializer
+
+from core.models import Item, OrderItem, Order, Address, UserProfile, Vendor
 
 # Create your views here.
 
-# class CreateUserView(generics.CreateAPIView):
-#     serializer_class = UserSerializer
-
-# class LoginView(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = LoginSerializer
-
-#     def post(self, request, *args,**kwargs):
-#         serializers = self.serializer_class(data=request.data,context={'request':request})
-#         serializers.is_valid(raise_exception=True)
-#         user = serializers.validated_data['user']
-#         token,created = Token.objects.get_or_create(user=user)
-#         return Response({
-#             'token': token.key,
-#             'username': user.username,
-#             'id': user.id,
-#             'email': user.email,
-#             'name': user.name,
-#         })
-        
+class CreateUserView(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = UserSerializer
+  
 class ItemViewset(viewsets.ModelViewSet):
+    permissions= IsAuthenticated
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
@@ -40,6 +30,15 @@ class ProfileViewset(viewsets.ModelViewSet):
     def get(request):
         user = request.user
         queryset = UserProfile.objects.filter(user_id=user.id)
+        return queryset
+    
+class VendorViewset(viewsets.ModelViewSet):
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
+    
+    def get(request):
+        user = request.user
+        queryset = Vendor.objects.filter(user_id=user.id)
         return queryset
 
 class OrderItemViewset(viewsets.ModelViewSet):
@@ -53,14 +52,21 @@ class OrderViewset(viewsets.ModelViewSet):
 class AddressViewset(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class= AddressSerializer
-class PaymentViewset(viewsets.ModelViewSet):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-    
-class  CouponViewset(viewsets.ModelViewSet):
-    queryset = Coupon.objects.all()
-    serializer_class= CouponSerializer
-    
-class RefundViewset(viewsets.ModelViewSet):
-    queryset = Refund.objects.all()
-    serializer_class= RefundSerializer
+
+class TransactionViewset(viewsets.ModelViewSet):
+    queryset= Transaction.objects.all()
+    serializer_class= TransactionSerializer
+
+class LogoutView(views.APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        # print(request.data)
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
