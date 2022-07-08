@@ -5,23 +5,11 @@ export interface signupModel{
     is_vendor: boolean,
     is_customer:boolean,
 }
-
-export interface AuthResData{
-    id: number,
-    email: string,
-    username: string,
-    is_vendor: boolean,
-    is_customer:boolean,
-
-    token?: string
-}
-
 export interface loginModel{
     username: string,
     password: string
 }
-
-export class User{
+export class Userr{
     constructor(
        
         public id: number,
@@ -31,4 +19,12 @@ export class User{
         public is_customer:boolean,
     ){}
     
+}
+export interface User{
+    id: number;
+    username: string,
+    email: string,
+    is_vendor?: boolean,
+    is_customer?: boolean,
+    password?: string,
 }
