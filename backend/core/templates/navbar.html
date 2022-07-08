@@ -23,10 +23,20 @@
           <a class="dropdown-item" href="/order-summery/" style=" color: #FFCC33;">Cart</a>
           <a class="dropdown-item" href="#" style=" color: #FFCC33;">Vender</a>
         </div>
+        {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
+        <li class="nav-item">
+          <a href="{% url 'core:order-summery' %}" class="nav-link waves-effect">
+            {% comment %} <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span> {% endcomment %}
+            <i class="fas fa-shopping-cart"></i>
+            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+          </a>
+        </li>
       </li>
       <li class="nav-item">
         <a class="nav-link mr-30" href="/logout" style=" color: #FFCC33;" >Logout</a>
       </li>
     </ul>
   </div>
+
+
 </nav>
