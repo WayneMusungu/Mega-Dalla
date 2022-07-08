@@ -9,9 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
 from .models import Item, OrderItem, Order, Address, UserProfile
-from core.forms import UserProfileForm
+from core.forms import LoginForm, RegistrationForm, UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
-from core.forms import UserProfileForm,CheckoutForm, RegistrationForm, LoginForm
+from core.forms import UserProfileForm,CheckoutForm
 
 
 # Create your views here.
@@ -27,7 +27,7 @@ def is_valid_form(values):
             valid = False
     return valid
 
-@login_required(login_url='/login')
+@login_required
 def home(request):
     items = Item.objects.all()
     print(items)
@@ -403,7 +403,7 @@ class CheckoutView(View):
         
 
         
-@login_required(login_url='/login/')
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
     form = UserProfileForm(request.POST, request.FILES)

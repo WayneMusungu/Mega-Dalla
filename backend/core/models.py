@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+
+import email
+from django.db.models.signals import post_save
+>>>>>>> master
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -7,6 +13,8 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
+
+from payments.models import Transaction
 
 from payments.models import Transaction
 
