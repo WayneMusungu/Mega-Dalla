@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
  {% load bootstrap5 %}
 {% block content %}
@@ -75,4 +76,82 @@
 
 </style>
 
+=======
+{% extends 'base.html' %}
+ {% load bootstrap5 %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          
+          <h2 cursive; margin-top: 5px; margin-left: 5px; color: #1D3354;"aria-current="page">MEGA DALLA</h2>
+        </li>
+        <li> <a style="margin-left: 20px; " href="/"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">HOME </button></a></li>
+      </ul>
+      <div style="display: flex;">
+        
+        <a style="margin-right: 30px; " href="/accounts/register"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">SIGN UP </button></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div style="margin-top: 30px;" class="row signs">
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+           
+            <div class="panel panel-default">
+                
+                
+                <div class="panel-body">
+                    <div class="panel-heading">
+                        <h3 class="text-center">Login</h3>
+                    </div>
+
+                    <form style="color: #FFCC33;" action="/accounts/login/" method="post">
+                        {% csrf_token %} {% bootstrap_form form%}
+
+                        <div class="form-group">
+                            <input type="submit" style="background:#FFCC33; color:black;" value="Login" class="login">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+                </br>
+
+                <p>Don't have an account? Create one <a href="/accounts/register" style="color: white;">here.</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- empty div -->
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<style>
+ 
+
+
+</style>
+
+>>>>>>> e029b4c53a52413c2babd31c4136b45f9ce5d12f
 {% endblock %}
