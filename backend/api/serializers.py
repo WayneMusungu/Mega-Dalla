@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import *
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from core.models import *
 from rest_framework import serializers
 
@@ -48,3 +48,27 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model= Transaction
         fields="__all__"
+        
+        
+        
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(
+        style={'input_type':'password'},
+        trim_whitespace = False
+    )
+    def validate(self,attrs):
+        username = attrs.get('username')
+        password = attrs.get('password')
+
+        user = authenticate(
+            request=self.context.get('request'),
+            username=username,
+            password=password
+        )
+        if not user:
+            raise serializers.ValidationError("Invalid User Credentials")
+        attrs['user'] =user
+        
+        return attrs
+  
