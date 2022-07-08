@@ -105,6 +105,7 @@ SOFTWARE.
 [Go Back to the top](#MEGA-DALLA)
 
 
-# Project layout
+# Project layout 
+# ADMIN Dashbord
 
 ![MEGA-DALLA](backend/static/images/homepage2.png)
