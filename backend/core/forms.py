@@ -12,13 +12,15 @@ PAYMENT_CHOICES = (
     ('P', 'PayPal'),
     ('D', 'Debit'),
     ('S', 'Stripe'),
+    ('M', 'Mpesa'),
+    
 )
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['bio','phone_number', 'fax_number']
+        fields = ['bio','phone_number']
         
         
 class RegistrationForm( UserCreationForm, forms.ModelForm):
@@ -73,13 +75,13 @@ class CheckoutForm(forms.Form):
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
     
-class CouponForm(forms.Form):
-    code = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Promo code',
-        'aria-label': 'Recipient\'s username',
-        'aria-describedby': 'basic-addon2'
-    }))
+# 
+
+    
+# class PaymentForm(forms.Form):
+#     stripeToken = forms.CharField(required=False)
+#     save = forms.BooleanField(required=False)
+#     use_default = forms.BooleanField(required=False)
 
 
 

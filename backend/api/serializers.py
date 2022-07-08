@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['user','stripe_customer_id','phone_number','bio',]
+        fields ='__all__'
         
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,7 +26,7 @@ class VendorSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['title','price','description','discount_price','label','slug','image']
+        fields="__all__"
         
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,17 +43,8 @@ class AddressSerializer(serializers.ModelSerializer):
         model=Address
         fields="__all__"
 
-class PaymentSerializer(serializers.ModelSerializer):
+
+class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Payment
-        fields=['user','amount','timestamp']
-        
-class CouponSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Coupon
-        fields="__all__"
-        
-class RefundSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Refund
+        model= Transaction
         fields="__all__"

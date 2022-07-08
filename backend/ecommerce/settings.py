@@ -36,7 +36,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'core.apps.CoreConfig',
+    'payments.apps.PaymentsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,9 +56,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     
     'corsheaders',
-    
     'api',
-    'core',
+    'django_extensions',
+    
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dallas',
+#         'PASSWORD': get_password(),
+#         'USER': get_username(),
+#         'HOST': 'localhost',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -168,7 +179,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #     "http://localhost:8080",
 #     "http://127.0.0.1:9000",
 # ]
-AUTH_USER_MODEL = 'core.User'
+# AUTH_USER_MODEL = 'core.User'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 

@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -8,6 +7,8 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
+
+from payments.models import Transaction
 
 CATEGORY_CHOICES = (
     ('C', 'Clothes'),
@@ -35,11 +36,9 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
-    stripe_customer_id = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=250)
-    email= models.EmailField(max_length=100)
+    email = models.EmailField(null=True, max_length=250)
     phone_number = PhoneNumberField()
-    fax_number = PhoneNumberField(blank=True)
     one_click_purchasing = models.BooleanField(default=False)
 
     def __str__(self):
@@ -63,7 +62,7 @@ class Vendor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
     bio = models.CharField(max_length=250)
     email= models.EmailField(max_length=100)
-    phone_number = models.IntegerField()
+    phone_number = PhoneNumberField()
 
     def __str__(self):
         return self.user.username
@@ -92,6 +91,7 @@ class Item(models.Model):
     slug = models.SlugField()
     description = models.TextField()
     image = CloudinaryField('image')
+    # amount = models.FloatField()
     
 
     def __str__(self):
@@ -114,7 +114,7 @@ class Item(models.Model):
 
 
 class OrderItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -139,19 +139,15 @@ class OrderItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
     shipping_address = models.ForeignKey('Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
-    billing_address = models.ForeignKey('Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
-    payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
-    coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(Transaction, on_delete=models.SET_NULL, blank=True, null=True)
     being_delivered = models.BooleanField(default=False)
     received = models.BooleanField(default=False)
-    refund_requested = models.BooleanField(default=False)
-    refund_granted = models.BooleanField(default=False)
+
 
     '''
     1. Item added to cart
@@ -165,14 +161,12 @@ class Order(models.Model):
     '''
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     def get_total(self):
         total = 0
         for order_item in self.items.all():
             total += order_item.get_final_price()
-        if self.coupon:
-            total -= self.coupon.amount
         return total
 
 
@@ -190,31 +184,3 @@ class Address(models.Model):
 
     class Meta:
         verbose_name_plural = 'Addresses'
-
-
-class Payment(models.Model):
-    stripe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(User,on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username
-
-
-class Coupon(models.Model):
-    code = models.CharField(max_length=15)
-    amount = models.FloatField()
-
-    def __str__(self):
-        return self.code
-
-
-class Refund(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    reason = models.TextField()
-    accepted = models.BooleanField(default=False)
-    email = models.EmailField()
-
-    def __str__(self):
-        return f"{self.pk}"

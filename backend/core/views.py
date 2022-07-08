@@ -8,10 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView,View 
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
-from core.forms import UserProfileForm,CheckoutForm,CouponForm,RegistrationForm,LoginForm
+from core.forms import UserProfileForm,CheckoutForm, RegistrationForm, LoginForm
 
 
 # Create your views here.
@@ -117,7 +117,7 @@ class CheckoutView(View):
             form = CheckoutForm()
             context = {
                 'form': form,
-                'couponform': CouponForm(),
+                # 'couponform': CouponForm(),
                 'order': order,
                 'DISPLAY_COUPON_FORM': True
             }
@@ -391,6 +391,8 @@ class CheckoutView(View):
                     return redirect('core:payment', payment_option='stripe')
                 elif payment_option == 'P':
                     return redirect('core:payment', payment_option='paypal')
+                elif payment_option == 'M':
+                    return redirect('payments:initiate_payment')
                 else:
                     messages.warning(
                         self.request, "Invalid payment option selected")
@@ -399,9 +401,7 @@ class CheckoutView(View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")
         
-class PaymentView(View):
-    def get(self, *args, **kwargs):
-        return render(self.request, "payment.html")
+
         
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
@@ -450,8 +450,10 @@ def login_user(request):
 
 @login_required(login_url='/login')
 def logout_user(request):
-    logout(request)
-    return redirect('/')
+
+    return render(request,'welcome.html') 
+
+
 class OrderSummaryView(LoginRequiredMixin,View):
     
     def get(self,*args,**kwargs):

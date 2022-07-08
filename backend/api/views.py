@@ -5,9 +5,11 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import AddressSerializer, CouponSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer, PaymentSerializer, RefundSerializer, UserSerializer, UserProfileSerializer, VendorSerializer
+from payments.models import Transaction
 
-from core.models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, User, UserProfile, Vendor
+from .serializers import AddressSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer,  TransactionSerializer, UserSerializer, UserProfileSerializer, VendorSerializer
+
+from core.models import Item, OrderItem, Order, Address, UserProfile, Vendor
 
 # Create your views here.
 
@@ -50,19 +52,11 @@ class OrderViewset(viewsets.ModelViewSet):
 class AddressViewset(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class= AddressSerializer
-class PaymentViewset(viewsets.ModelViewSet):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-    
-class  CouponViewset(viewsets.ModelViewSet):
-    queryset = Coupon.objects.all()
-    serializer_class= CouponSerializer
-    
-class RefundViewset(viewsets.ModelViewSet):
-    queryset = Refund.objects.all()
-    serializer_class= RefundSerializer
-    
-    
+
+class TransactionViewset(viewsets.ModelViewSet):
+    queryset= Transaction.objects.all()
+    serializer_class= TransactionSerializer
+
 class LogoutView(views.APIView):
     permission_classes = (IsAuthenticated,)
 

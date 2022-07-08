@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, User, UserProfile, Vendor
-
-
-def make_refund_accepted(modeladmin, request, queryset):
-    queryset.update(refund_requested=False, refund_granted=True)
-
-
-make_refund_accepted.short_description = 'Update orders to refund granted'
+from .models import Item, OrderItem, Order, Address, UserProfile, Vendor,User
+from django.contrib.auth.admin import UserAdmin as BaseUser
+from django.utils.translation import gettext as _
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -14,30 +9,25 @@ class OrderAdmin(admin.ModelAdmin):
                     'ordered',
                     'being_delivered',
                     'received',
-                    'refund_requested',
-                    'refund_granted',
                     'shipping_address',
-                    'billing_address',
                     'payment',
-                    'coupon'
+                    
                     ]
     list_display_links = [
         'user',
         'shipping_address',
-        'billing_address',
         'payment',
-        'coupon'
+        
     ]
     list_filter = ['ordered',
                    'being_delivered',
                    'received',
-                   'refund_requested',
-                   'refund_granted']
+                   ]
     search_fields = [
-        'user__username',
-        'ref_code'
+        'user__username',    
     ]
-    actions = [make_refund_accepted]
+   
+
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -45,6 +35,7 @@ class AddressAdmin(admin.ModelAdmin):
         'user',
         'street_address',
         'apartment_address',
+        'billing_address',
         'country',
         'zip',
         'address_type',
@@ -58,9 +49,6 @@ class AddressAdmin(admin.ModelAdmin):
 admin.site.register(Item)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(Payment)
-admin.site.register(Coupon)
-admin.site.register(Refund)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(UserProfile)
 admin.site.register(User)
