@@ -1,0 +1,253 @@
+<main>
+  <div class="container wow fadeIn">
+    <h2 class="my-5 h2 text-center">Checkout form</h2>
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <div class="card">
+          <form method="POST" class="card-body">
+            <h3>Shipping address</h3>
+            <div class="hideable_shipping_form">
+              <div class="md-form mb-5">
+                <label for="shipping_address" class="">Address</label>
+                <input
+                  type="text"
+                  placeholder="1234 Main St"
+                  id="shipping_address"
+                  name="shipping_address"
+                  class="form-control"
+                />
+              </div>
+              <div class="md-form mb-5">
+                <label for="shipping_address2" class=""
+                  >Address 2 (optional)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Apartment address"
+                  id="shipping_address2"
+                  name="shipping_address2"
+                  class="form-control"
+                />
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <label for="country">Country</label>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="shipping_zip">Zip</label>
+                  <input
+                    type="text"
+                    placeholder="Zip code"
+                    id="shipping_zip"
+                    name="shipping_zip"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">Zip code required.</div>
+                </div>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  name="same_billing_address"
+                  id="same_billing_address"
+                />
+                <label class="custom-control-label" for="same_billing_address"
+                  >Billing address is the same as my shipping address</label
+                >
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  name="set_default_shipping"
+                  id="set_default_shipping"
+                />
+                <label class="custom-control-label" for="set_default_shipping"
+                  >Save as default shipping address</label
+                >
+              </div>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                name="use_default_shipping"
+                id="use_default_shipping"
+              />
+              <label class="custom-control-label" for="use_default_shipping"
+                >Use default shipping address:
+              </label>
+            </div>
+            <hr />
+            <h3>Billing address</h3>
+            <div class="hideable_billing_form">
+              <div class="md-form mb-5">
+                <label for="billing_address" class="">Address</label>
+                <input
+                  type="text"
+                  placeholder="1234 Main St"
+                  id="billing_address"
+                  name="billing_address"
+                  class="form-control"
+                />
+              </div>
+              <div class="md-form mb-5">
+                <label for="billing_address2" class=""
+                  >Address 2 (optional)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Apartment or suite"
+                  id="billing_address2"
+                  name="billing_address2"
+                  class="form-control"
+                />
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <label for="country">Country</label>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="billing_zip">Zip</label>
+                  <input
+                    type="text"
+                    placeholder="Zip code"
+                    id="billing_zip"
+                    name="billing_zip"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">Zip code required.</div>
+                </div>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  name="set_default_billing"
+                  id="set_default_billing"
+                />
+                <label class="custom-control-label" for="set_default_billing"
+                  >Save as default billing address</label
+                >
+              </div>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                name="use_default_billing"
+                id="use_default_billing"
+              />
+              <label class="custom-control-label" for="use_default_billing"
+                >Use default billing address:
+              </label>
+            </div>
+            <hr />
+            <h3>Payment option</h3>
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input
+                  id=""
+                  name="payment_option"
+                  value=""
+                  type="radio"
+                  class="custom-control-input"
+                  required
+                />
+                <label class="custom-control-label" for=""></label>
+              </div>
+            </div>
+            <hr class="mb-4" />
+            <button class="btn btn-primary btn-lg btn-block" type="submit">
+              Continue to checkout
+            </button>
+          </form>
+        </div>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4 mb-4">
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          <span class="badge badge-secondary badge-pill">3</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          <li
+            class="list-group-item d-flex justify-content-between lh-condensed"
+          >
+            <div>
+              <h6 class="my-0">Product name</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$12</span>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between lh-condensed"
+          >
+            <div>
+              <h6 class="my-0">Second product</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$8</span>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between lh-condensed"
+          >
+            <div>
+              <h6 class="my-0">Third item</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">-$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$20</strong>
+          </li>
+        </ul>
+        <!-- Cart -->
+
+        <!-- Promo code -->
+        <form class="card p-2">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Promo code"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-secondary btn-md waves-effect m-0"
+                type="button"
+              >
+                Redeem
+              </button>
+            </div>
+          </div>
+        </form>
+        <!-- Promo code -->
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+</main>
