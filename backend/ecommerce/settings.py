@@ -180,7 +180,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #     "http://localhost:8080",
 #     "http://127.0.0.1:9000",
 # ]
-<<<<<<< HEAD
 AUTH_USER_MODEL = 'core.User'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -200,8 +199,3 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True
 }
-=======
-# AUTH_USER_MODEL = 'core.User'
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
->>>>>>> master
