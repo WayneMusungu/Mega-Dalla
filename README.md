@@ -43,6 +43,7 @@ Install dependancies that will create an environment for the app to run
 In a new terminal, open the postgresql shell with `psql`.
 ```bash
 CREATE DATABASE dallas; 
+```
 
 ###  Make and run migrations
 ```bash
