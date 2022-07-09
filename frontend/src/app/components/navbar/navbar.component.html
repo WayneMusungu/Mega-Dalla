@@ -1,41 +1,29 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light"
-  style="background: #023e8a; color: #ffcc33"
->
-  <a class="navbar-brand" routerLink="/home" style="color: #ffcc33">MEGA-DALLA</a>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" routerLink="/home">MEGA-DALLA</a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" routerLink="/home" style="color: #ffcc33">Home</a>
+        <a class="nav-link" id="nav-link" routerLink="/home">Home</a>
       </li>
-
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          id="navbarDropdownMenuLink"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          style="color: #ffcc33"
-        >
-          Dropdown link
+      <div class="dropdown">
+        <a class="dropdown-toggle nav-link" id="nav-link" data-bs-toggle="dropdown">
+          Links
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#" style="color: #ffcc33">Products</a>
-          <a class="dropdown-item" href="/order-summary/" style="color: #ffcc33"
-            >Cart</a
-          >
-          <a class="dropdown-item" href="#" style="color: #ffcc33">Vendor</a>
-        </div>
-      </li>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Products</a></li>
+          <li><a class="dropdown-item" href="/ordersummary/">Cart</a></li>
+          <li><a class="dropdown-item" href="#">Vendor</a></li>
+        </ul>
+      </div>
     </ul>
   </div>
   <div class="navbar-end">
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item">
         <a
-          class="nav-link"
-          style="color: #ffcc33; cursor: pointer"
+          class="nav-link item"
+          id="nav-link"
+          style="cursor: pointer"
           routerLink="/auth"
           *ngIf="!isAuthenticated"
           >Login</a
@@ -43,8 +31,9 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link mr-30"
-          style="color: #ffcc33; cursor: pointer"
+          class="nav-link mr-30 item"
+          id="nav-link"
+          style="cursor: pointer"
           (click)="onLogout()"
           *ngIf="isAuthenticated"
           >Logout</a
