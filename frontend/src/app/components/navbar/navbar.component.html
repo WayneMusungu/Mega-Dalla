@@ -2,39 +2,16 @@
   class="navbar navbar-expand-lg navbar-light"
   style="background: #023e8a; color: #ffcc33"
 >
-  <a class="navbar-brand" href="/" style="color: #ffcc33">MEGA-DALLA</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavDropdown"
-    aria-controls="navbarNavDropdown"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" routerLink="/home" style="color: #ffcc33">MEGA-DALLA</a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" href="/" style="color: #ffcc33"
-          >Home <span class="sr-only">(current)</span></a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          style="color: #ffcc33; cursor: pointer"
-          routerLink="/auth"
-          *ngIf="!isAuthenticated"
-          >Login</a
-        >
+        <a class="nav-link" routerLink="/home" style="color: #ffcc33">Home</a>
       </li>
 
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="navbarDropdownMenuLink"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -45,11 +22,24 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#" style="color: #ffcc33">Products</a>
-          <a class="dropdown-item" href="/order-summery/" style="color: #ffcc33"
+          <a class="dropdown-item" href="/order-summary/" style="color: #ffcc33"
             >Cart</a
           >
-          <a class="dropdown-item" href="#" style="color: #ffcc33">Vender</a>
+          <a class="dropdown-item" href="#" style="color: #ffcc33">Vendor</a>
         </div>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          style="color: #ffcc33; cursor: pointer"
+          routerLink="/auth"
+          *ngIf="!isAuthenticated"
+          >Login</a
+        >
       </li>
       <li class="nav-item">
         <a
