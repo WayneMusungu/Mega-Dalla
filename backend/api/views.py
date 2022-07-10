@@ -2,12 +2,13 @@ from rest_framework import generics, viewsets, views
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
+from rest_framework.views import APIView
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from payments.models import Transaction
 
-from .serializers import AddressSerializer, ItemSerializer, OrderItemSerializer, OrderSerializer,  TransactionSerializer, UserSerializer, UserProfileSerializer, VendorSerializer
+from .serializers import AddressSerializer, ItemSerializer, LoginSerializer, OrderItemSerializer, OrderSerializer,  TransactionSerializer, UserSerializer, UserProfileSerializer, VendorSerializer
 
 from core.models import Item, OrderItem, Order, Address, UserProfile, Vendor
 
@@ -17,7 +18,26 @@ class CreateUserView(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserSerializer
-  
+class LoginView(APIView):
+
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args,**kwargs):
+        serializers = self.serializer_class(data=request.data,context={'request':request})
+        serializers.is_valid(raise_exception=True)
+        user = serializers.validated_data['user']
+        refresh = RefreshToken.for_user(user)
+        
+        return Response({
+            'username': user.username,
+            'id': user.id,
+            'email': user.email,
+            'is_vendor':user.is_vendor,
+            'is_customer':user.is_customer,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
+
 class ItemViewset(viewsets.ModelViewSet):
     permissions= IsAuthenticated
     queryset = Item.objects.all()

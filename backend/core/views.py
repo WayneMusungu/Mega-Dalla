@@ -427,7 +427,7 @@ def register(request):
             user.customer.email = form.cleaned_data.get('email')
             user.save()
             form.save()
-        return redirect('core:login_user')
+        return redirect('core:welcome')
     return render(request, 'auth/register.html',locals())
 
 def login_user(request):
