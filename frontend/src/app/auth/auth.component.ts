@@ -64,7 +64,7 @@ export class AuthComponent implements OnInit {
   onLogin(){
     this.authService.loginUser(this.loginForm.value)
     .subscribe((response) => {
-        this.router.navigate(['/profile/']);
+        this.router.navigate(['/profile-update/']);
       }
       ,(errorRes)=>{
         this.error=errorRes;

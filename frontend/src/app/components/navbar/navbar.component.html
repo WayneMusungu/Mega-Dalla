@@ -1,0 +1,55 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background: #023e8a; color: #ffcc33"
+>
+  <a class="navbar-brand" routerLink="/home" style="color: #ffcc33">MEGA-DALLA</a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" routerLink="/home" style="color: #ffcc33">Home</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="color: #ffcc33"
+        >
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" style="color: #ffcc33">Products</a>
+          <a class="dropdown-item" href="/order-summary/" style="color: #ffcc33"
+            >Cart</a
+          >
+          <a class="dropdown-item" href="#" style="color: #ffcc33">Vendor</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          style="color: #ffcc33; cursor: pointer"
+          routerLink="/auth"
+          *ngIf="!isAuthenticated"
+          >Login</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link mr-30"
+          style="color: #ffcc33; cursor: pointer"
+          (click)="onLogout()"
+          *ngIf="isAuthenticated"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
