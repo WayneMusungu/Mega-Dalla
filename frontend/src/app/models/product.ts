@@ -6,5 +6,6 @@ export interface Item{
     label: string;
     slug: string;
     description: string;
-    image: string;
+    image: any;
+    id:number;
 }

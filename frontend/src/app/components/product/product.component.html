@@ -1,7 +1,7 @@
-<div class="container-fluid" *ngFor="let it of item">
-  <h2>Title: {{it.title}}</h2>
+<div class="container-fluid" *ngIf="item">
+  <h2>Title: {{item.title}}</h2>
   <div style="height: 50vh">
-    <img src="{{it.image}}" alt="{{it.title}}" style="height: 100%" />
+    <img src="{{item.image}}" alt="{{item.title}}" style="height: 100%" />
   </div>
   <div>
     <a href="" class="btn btn-primary btn-md my-0 p">

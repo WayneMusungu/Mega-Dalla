@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Item } from '../models/product';
 
@@ -18,4 +18,7 @@ export class ProductService {
     return this.http.get<Item>(`${this.url}/items`);
   }
 
+  GetDatabyId(id:number): Observable<Item> {
+    return this.http.get<Item>(`${this.url}/items/`+id);
+  }
 }

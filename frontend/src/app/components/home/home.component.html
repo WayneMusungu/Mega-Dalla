@@ -9,22 +9,22 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
+            <a class="nav-link" id="nav-link" href="#"
               >All
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Electronics</a>
+            <a class="nav-link" id="nav-link" href="#">Electronics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Shirts</a>
+            <a class="nav-link" id="nav-link" href="#">Shirts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sport wears</a>
+            <a class="nav-link" id="nav-link" href="#">Sport wears</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Outwears</a>
+            <a class="nav-link" id="nav-link" href="#">Outwears</a>
           </li>
         </ul>
         <!-- Links -->
@@ -47,13 +47,13 @@
     <!--Section: Products v.3-->
     <section class="text-center mb-4">
       <div class="row wow fadeIn">
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let item of list">
           <div class="card">
             <div class="view overlay">
-              <img src="" class="card-img-top" />
               <img
-                src=""
-                class="card-img-thumbnail"
+                *ngIf="item.image"
+                src="{{ item.image }}"
+                class="card-img-top card-img-thumbnail"
                 style="height: 300px; width: 300px"
               />
               <a href="">
@@ -63,18 +63,25 @@
 
             <div class="card-body text-center">
               <a href="" class="grey-text">
-                <h5></h5>
+                <h5>{{ item.category }}</h5>
               </a>
               <h5>
                 <strong>
-                  <a href="" class="dark-grey-text">
-                    <span class="badge badge-pill-color">NEW</span>
+                  <button class="btn btn-primary" (click)="goToUrl(item.id)">
+                    {{ item.title }}
+                  </button>
+                  <a href="/product/" class="dark-grey-text"
+                    >{{ item.title }}
                   </a>
                 </strong>
               </h5>
 
               <h4 class="font-weight-bold blue-text">
-                <strong>$ Discount: <br />Price: </strong>
+                <strong
+                  >Discount: Kshs.{{ item.discount_price }} <br />Price: Kshs.{{
+                    item.price
+                  }}</strong
+                >
               </h4>
             </div>
           </div>
