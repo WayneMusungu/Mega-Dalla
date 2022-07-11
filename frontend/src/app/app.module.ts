@@ -18,6 +18,7 @@ import { OrdersummaryComponent } from './components/ordersummary/ordersummary.co
 import { ProductComponent } from './components/product/product.component';
 import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     OrdersummaryComponent,
     ProductComponent,
     ProfileUpdateComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
