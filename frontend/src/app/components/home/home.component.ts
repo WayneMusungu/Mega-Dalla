@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  products: Item[] = [];
 
   list!: Item;
   id:number;
@@ -26,6 +27,9 @@ export class HomeComponent implements OnInit {
       console.log(item);
     // this.router.navigate(['/product'])
     })
+
+    this.productService.getProduct().subscribe((product) => (this.products = product))
+    console.log(this.products)
 
     // this.productService.GetData().subscribe((item) => {
     //   console.log(item);
