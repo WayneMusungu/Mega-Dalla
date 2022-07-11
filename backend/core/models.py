@@ -93,6 +93,11 @@ class Item(models.Model):
     slug = models.SlugField()
     description = models.TextField()
     image = CloudinaryField('image')
+    additional_information = models.TextField()
+    related_image1 = CloudinaryField('image')
+    related_image2 = CloudinaryField('image')
+    related_image3 = CloudinaryField('image')
+    
     # amount = models.FloatField()
     
 
