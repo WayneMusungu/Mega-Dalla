@@ -141,4 +141,4 @@ SOFTWARE.
 
  ## Checkout  
 
-![MEGA-DALLA](backend/static/images/order-summary.png)
+![MEGA-DALLA](backend/static/images/checkout.png)
