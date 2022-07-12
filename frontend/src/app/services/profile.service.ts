@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profile } from '../models/profile';
 
@@ -13,8 +14,8 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
 
-  upDate(profile: Profile ){
-    return this.http.put<Profile>(`${this.url}/profile/`,profile);
+  upDate(profile:any ): Observable<any>{
+    return this.http.patch(`${this.url}/profile/`,profile);
     
   }
 }
