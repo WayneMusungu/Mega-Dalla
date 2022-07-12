@@ -1,54 +1,62 @@
 
 {% extends 'base.html' %} {% block content%}
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          
-          <h2 cursive; margin-top: 5px; margin-left: 5px; color: #1D3354;"aria-current="page">MEGA DALLA</h2>
-        </li>
-        
-      </ul>
-      <div style="display: flex;">
-        
-        <a style="margin-right: 50px; " href="/login"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">LOGIN </button></a>
-      </div>
-      <div style="display: flex;">
-        
-        <a style="margin-right: 30px; " href="/register"><button  style=" color: #FFCC33;" class="btn btn btn-lg" role="button">SIGN UP </button></a>
-      </div>
-    </div>
-  </div>
-</nav>
 
-<div  class="container">
+
+
   
   <div class="info">
-    
+  
     <h1  style="text-align: center; margin-right: 50px; , cursive; margin-top: 20px; color: #1D3354;"> MEGA DALLAS YOUR PLACE FOR EVERYTHING
     </h1>
+  </div>
     <h2 style="text-align: center; margin-right: 50px;, cursive; margin-top: 20px; color: #1D3354;"></h2>
     
     <div  class="container">
-      <div class="bg">
-      <div style="text-align: center;" class="center">
-        <img src="https://res.cloudinary.com/dhmbjiskt/image/upload/v1656777328/app-online-store_ocyy96.gif" alt="" style="width: 500px; height: 500px; border-radius: 10px;">
+      <div class="row">
+        <div class="col" style="background:#caf0f8; border-radius: 10px;">
+          <div class="md-hero-text">
+          <p>megga dalla <i class="bi bi-emoji-smile-fill" style="font-size: 23px;"></i> Got You Covered</p>
+          </div>
+        </div>
+      
+      <div class="col">
+        <img src="https://res.cloudinary.com/dhmbjiskt/image/upload/v1656777328/app-online-store_ocyy96.gif" alt="" style="width: 300px; height: 300px; border-radius: 10px;">
       </div>
-     
+      </div>
+      </div>
+      </div>
     </div>      
-    </div>
+  
     
   </div>
+  <div class="md-about"style="padding: 60px;">
+      <div class="row" style="background:#f8f9fa;  border-radius: 25px;box: shaddow 5px;">
+        <div class="col-sm">
+          <h4><b><u>ABOUT Us</u></b></h4><i>
+          <p>This application is made in Kenya.We as the dreamteam decided to come up with this application due to the long queing and the outbreake of corona.</p>
+        <p>No more queing and to ensure less contact of large group of people to reduce the spread of corona</p></i>
+        </div>
+         <div class="col-sm">
+          <h4><b><u>SERVICE</u></b></h4><i>
+          <p>Our application the Megga-Dalla offers services to our customers at the comfort of their own home no more queing in lines.</p>
+          <p>Users are able to select the items they want,make an order and pay for it. Once they are done they come to pick it up when it's already packed.</p></i>
+        </div>
+        <div class="col-sm">
+          <h4><b><u>CONTACT</u></b></h4><i>
+          <p>For more informatoin you </p></i>
+          <i class="bi bi-telephone-fill">0789653423</i>
+          <p>
+          <i class="bi bi-envelope-fill">thedreamteam@gmail.com</i></p>
+          <p><i class="bi bi-twitter">thedreamteam</i></p>
+        </div>
+      </div>
+    </div>
   {%endblock%} 
+ <section class="smb-hero-section">
+      <div class="smb-hero-text">
+        <div>
+          <h3>Got an <span>Emergency?</span></h3>
+          <p>Keep calm, Help is one click away</p>
+        </div>
+      </div>
+    </section>
