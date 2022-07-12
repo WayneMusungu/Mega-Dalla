@@ -137,7 +137,7 @@ SOFTWARE.
 
 ## Order-Summary
 
-![MEGA-DALLA](backend/static/images/order-summary.png)
+![MEGA-DALLA](backend/static/images/oder-summary.png)
 
  ## Checkout
 
