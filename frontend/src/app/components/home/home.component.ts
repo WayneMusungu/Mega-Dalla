@@ -14,13 +14,7 @@ export class HomeComponent implements OnInit {
   list!: Item;
   id:number;
 
-<<<<<<< HEAD
-  constructor(private productService: ProductService) {
-    this.list.id = this.id;
-  }
-=======
   constructor(private productService: ProductService) { }
->>>>>>> master
 
   ngOnInit(): void {
     this.productService.GetData().subscribe((item) => {
