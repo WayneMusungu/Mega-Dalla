@@ -144,3 +144,5 @@ SOFTWARE.
  ## CHECKOUT
 
 ![MEGA-DALLA](backend/static/images/checkout.png)
+
+
