@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
 
     this.cartService.getProducts()
     .subscribe(res=>{
-      this.totalItem = 5;
+      this.totalItem = res.length;
     })
   }
   ngOnDestroy() {
