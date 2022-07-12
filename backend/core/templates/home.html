@@ -31,7 +31,7 @@
               <h5 class="card-title fw-bold">{{ item.title }}</h5>
               <p class="card-text">{{ item.slug }}</p>
               <p class="card-text">Category: {{ item.get_category_display }}</p>
-              <p class="card-text"> {% if item.discount_price %}Price: ksh {{ item.price }} <br> {% else %}Discount Price: <span class="text-danger">ksh {{ item.discount_price }}</span>  {% endif %}</p>
+              <p class="card-text"> {% if item.discount_price %} Discount Price: <span class="text-danger">ksh {{ item.discount_price }}</span> <br> {% else %}  Price: <span class="text-danger">ksh {{ item.price }}</span>  {% endif %}</p>
               <a href="{{ item.get_absolute_url }}" class="btn btn-primary add-cart-btn">ADD TO CART</a>
             </div>
           </div>
