@@ -60,3 +60,33 @@
     </div>
   </div>
 </div>
+<!-- <div>
+  <form
+    *ngIf="profile"
+    #profileForm="ngForm"
+    (ngSubmit)="onSubmit(profileForm)"
+  >
+    <div class="form-group">
+      <textarea
+        #bio="ngModel"
+        [(ngModel)]="profile.bio"
+        name="bio"
+        placeholder="About "
+        class="comment-input profile-input"
+        >{{ profile.bio }}</textarea
+      >
+    </div>
+    <div class="form-group">
+      <input
+        #lastName="ngModel"
+        type="tel"
+        name="phone_number"
+        class="comment-input profile-input"
+        placeholder="Phone Number"
+        [(ngModel)]="profile.phone_number"
+      />
+    </div>
+
+    <button class="home-btn post-btn py-2" type="submit">Update Profile</button>
+  </form>
+</div> -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UntypedFormGroup, UntypedFormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators, FormBuilder, FormGroup, ControlContainer} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/auth';
@@ -11,6 +11,7 @@ import { User } from '../models/auth';
 })
 export class AuthComponent implements OnInit {
   
+  user:User;
   isLoginMode=true;
   signupForm: UntypedFormGroup;
   loginForm: UntypedFormGroup;
@@ -64,7 +65,11 @@ export class AuthComponent implements OnInit {
   onLogin(){
     this.authService.loginUser(this.loginForm.value)
     .subscribe((response) => {
-        this.router.navigate(['/profile-update/']);
+        // this.router.navigate(['/profile-update/']);
+        // this.rolecheck()
+        this.authService.getProfile().subscribe((profile) => {
+          this.router.navigate([`/profile-update/`]);
+        });
       }
       ,(errorRes)=>{
         this.error=errorRes;
@@ -73,6 +78,12 @@ export class AuthComponent implements OnInit {
     this.loginForm.reset()
 
   }
+  // rolecheck(){
+  //   if(this.user.is_customer == true){
+  //     return this.router.navigate(['/profile-update/']);
+  //   }
+  //   return this.router.navigate(['/profile/']);
+  // }
   passwordCheck(control: UntypedFormGroup): {[s:string]:boolean}{
     if(control.get('password').value != control.get('confirmpassword').value){
       return {'notsame': true}
