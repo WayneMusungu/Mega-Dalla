@@ -120,14 +120,15 @@ SOFTWARE.
 
 # HOME PAGE
 
-![MEGA-DALLA](backend/static/images/homepage2.png)
+![MEGA-DALLA](backend/static/images/homepage2.png) 
 
-### Register
+
+### REGISTER
 
 ![MEGA-DALLA](backend/static/images/register.png)
 
 
-### Login
+### LOGIN
 
 ![MEGA-DALLA](backend/static/images/login.png)
 
@@ -135,10 +136,10 @@ SOFTWARE.
 
 ![MEGA-DALLA](backend/static/images/product.png)
 
-## Order-Summary
+## ORDER-SUMMARY
 
 ![MEGA-DALLA](backend/static/images/order-summary.png)
 
- ## Checkout  
+ ## CHECKOUT
 
 ![MEGA-DALLA](backend/static/images/checkout.png)
