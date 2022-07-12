@@ -25,10 +25,14 @@
     <img src="{{item.image}}" alt="{{item.title}}" style="height: 100%" />
   </div>
   <div>
-    <a href="" class="btn btn-primary btn-md my-0 p">
+    <button class="btn btn-primary btn-md my-0 p" (click)=addtocart(item)>
       Add to cart
       <i class="fas fa-shopping-cart ml-1"></i>
-    </a>
+    </button>
+    <!-- <a href="" class="btn btn-primary btn-md my-0 p">
+      Add to cart
+      <i class="fas fa-shopping-cart ml-1"></i>
+    </a> -->
     <a href="" class="btn btn-danger btn-md my-0 p"> Remove from cart </a>
   </div>
 </div>
