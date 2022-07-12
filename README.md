@@ -131,7 +131,8 @@ SOFTWARE.
 
 ### LOGIN
 
-![MEGA-DALLA](backend/static/images/login.png)
+![MEGA-DALLA](backend/static/images/login.png) 
+
 
 ## Product
 
