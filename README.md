@@ -122,6 +122,7 @@ SOFTWARE.
 
 ![MEGA-DALLA](backend/static/images/homepage2.png) 
 
+[Go Back to the top](#MEGA-DALLA)
 
 ### REGISTER
 
