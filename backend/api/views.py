@@ -1,3 +1,5 @@
+from functools import partial
+import profile
 from rest_framework import generics, viewsets, views
 from rest_framework.response import Response
 from rest_framework import permissions, status
@@ -38,8 +40,8 @@ class LoginView(APIView):
             'username': user.username,
             'id': user.id,
             'email': user.email,
-            # 'is_vendor':user.is_vendor,
-            # 'is_customer':user.is_customer,
+            'is_vendor':user.is_vendor,
+            'is_customer':user.is_customer,
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         })
@@ -49,33 +51,34 @@ class ItemViewset(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
-class ProfileViewset(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = UserProfile.objects.all()
+class ProfileViewset(generics.RetrieveUpdateAPIView):
+    # permission_classes = [IsAuthenticated]
+    # queryset = UserProfile.objects.all()  
     serializer_class = UserProfileSerializer
     
-    # def get(request):
-    #     user = request.user
-    #     queryset = UserProfile.objects.filter(user=user.id)
-    #     # return queryset
-    #     data = UserProfileSerializer(queryset, context={
-    #                              'request': request}).data
-    #     return Response(data, status=status.HTTP_200_OK)
-    def get(request, pk):
-        user = User.objects.get(id=pk)
-        profile = UserProfile.objects.filter(user=user).first()
-        serializer = UserProfileSerializer(profile)
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = UserProfile.objects.get(user=user)
+        print(profile)
+        data = UserProfileSerializer(profile, context={'request': request}).data
+        return Response(data, status=status.HTTP_200_OK)
     
-    def perform_create(self, serializer):
-        
-        serializer.save(user=self.request.user)
+    def patch(self, request, *args, **kwargs):
+        user= request.user
+        profile = UserProfile.objects.get(user=user)
+        print(profile)
+        serializer = UserProfileSerializer(profile,data=request.data, context={'request': request},partial=True)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save(user=self.request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_200_OK)
     
 class VendorViewset(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
     
-    def get(request):
+    def get(self, request, *args, **kwargs):
         user = request.user
         queryset = Vendor.objects.filter(user_id=user.id)
         return queryset
@@ -92,8 +95,6 @@ class AddressViewset(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class= AddressSerializer
     
-    # def update_address(self, serializer):
-    #     serializer.save(user=self.request.user)
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset= Transaction.objects.all()
