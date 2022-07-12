@@ -123,6 +123,7 @@ SOFTWARE.
 ![MEGA-DALLA](backend/static/images/homepage2.png)
 
 ### Register
+
 ![MEGA-DALLA](backend/static/images/register.png)
 
 
