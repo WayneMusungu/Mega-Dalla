@@ -16,10 +16,17 @@ export class AuthService{
     isLoggedin=this._isLoggedin.asObservable();
 
     user = new BehaviorSubject<Userr>(null);
+    private initialUser: any = null;
+  private profileSource: BehaviorSubject<Profile> = new BehaviorSubject(
+    this.initialUser
+  );
+
+  public profile = this.profileSource.asObservable();
 
     private url = `${environment.apiUrl}`;
 
     constructor(private http: HttpClient, private route: Router) {
+      this.profileSource.next(this.getLocalStorage('profile'));
       const token = localStorage.getItem('accessToken');
       this._isLoggedin.next(!!token);
     }
@@ -37,7 +44,19 @@ export class AuthService{
           console.log(res);
           this.setToken(res);
           this.handleAuth(res);
+          this.getProfile().subscribe();
+        return this.profile.subscribe((user) => user);
         }))
+    }
+    getProfile(): Observable<Profile> {
+      return this.http.get<Profile>(`${this.url}/profile`).pipe(
+        map((profile: any) => {
+          console.log(profile)
+          this.setLocalStorage('profile', profile);
+          this.profileSource.next(profile);
+          return profile;
+        })
+      );
     }
     autologin(){
       const userData:User = JSON.parse(localStorage.getItem('user'))
