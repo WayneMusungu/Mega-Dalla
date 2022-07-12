@@ -14,33 +14,17 @@ export class HomeComponent implements OnInit {
   list!: Item;
   id:number;
 
-  constructor(private productService: ProductService) { 
-    this.list.id = this.id;
-  }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.GetData().subscribe((item) => {
       console.log(item);
       this.list = item;
     })
-    this.productService.GetDatabyId(this.list.id).subscribe((item) => {
-      console.log(item);
-    // this.router.navigate(['/product'])
-    })
 
     this.productService.getProduct().subscribe((product) => (this.products = product))
     console.log(this.products)
 
-    // this.productService.GetData().subscribe((item) => {
-    //   console.log(item);
-    //   this.list = item;
-    // })
-  }
-  // goToUrl(id:number){
-  //   this.productService.GetDatabyId(id).subscribe((item) => {
-  //     console.log(item);
-  //   // this.router.navigate(['/product'])
-  //   })
   }
 
-// }
+}
