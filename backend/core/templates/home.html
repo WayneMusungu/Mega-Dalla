@@ -13,51 +13,37 @@
     <!--/.Navbar-->
 
     <!--Section: Products v.3-->
-    <section class="text-center mb-4">
-      <div class="row wow fadeIn">
-        {% for item in items %}
-        <div class="col-lg-3 col-md-6 mb-4 mt-5">
-          <div class="card">
-            <div class="view overlay">
-            
-                <img
-                src="{{ item.image.url }}"
-                class="img-thumbnail"
-                style="height: 300px; width: 300px"
-              />
-              <a href="{{ item.get_absolute_url }}">
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-
+ <section class="text-center mb-4">
+  <div class="row">
+    {% for item in items %}
+    <div class="col-lg-3 col-md-6 mb-4 mt-5">
+     
+        <div class="card">
+          <div class="view overlay">
+             {% comment %} <div class="badge">Hot</div> {% endcomment %}
+            <img
+             src="{{ item.image.url }}"
+             class="card-img-thumbnail"
+             style="height: 200px; width: 200px; margin-top: 2px;"
+             alt="product picture">
+          </div>
+          <div class="card-body text-center">
             <div class="card-body text-center">
-              <a href="" class="grey-text">
-                <h5>{{ item.get_category_display }}</h5>
-              </a>
-              <h5>
-                <strong>
-                  <a href="{{ item.get_absolute_url }}" class="dark-grey-text"
-                    >{{ item.title }}
-                    <span
-                      class="badge badge-pill {{ item.get_label_display }}-color"
-                      >NEW</span
-                    >
-                  </a>
-                </strong>
-              </h5>
-
-              <h4 class="font-weight-bold blue-text">
-                <strong
-                  >KES {% if item.discount_price %}Discount: {{ item.discount_price }} <br>Price: {{ item.price }} {% endif %}
-                </strong>
-              </h4>
+              <h5 class="card-title fw-bold">{{ item.title }}</h5>
+              <p class="card-text">{{ item.slug }}</p>
+              <p class="card-text">Category: {{ item.get_category_display }}</p>
+              <p class="card-text"> {% if item.discount_price %}Price: ksh {{ item.price }} <br> {% else %}Discount Price: <span class="text-danger">ksh {{ item.discount_price }}</span>  {% endif %}</p>
+              <a href="{{ item.get_absolute_url }}" class="btn btn-primary add-cart-btn">ADD TO CART</a>
             </div>
           </div>
         </div>
-        {% endfor %}
-      </div>
-    </section>
-    <!--Section: Products v.3-->
+      
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!--Section: Products v.3-->
+ 
 
     <!--Pagination-->
 

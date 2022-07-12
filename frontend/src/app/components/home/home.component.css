@@ -1,0 +1,23 @@
+.navbar{
+    background: #0449a2;
+    height: 7vh;
+}
+.navbar-brand{
+    color: #FFCC33;
+}
+#nav-link{
+    color: #FFCC33;
+}
+.product-card {
+    width: 30vw;
+}
+
+.product-img {
+    height: 100%;
+}
+
+.add-cart-btn {
+    background-color: #CCB353;
+    color: white;
+    border: none;
+}
