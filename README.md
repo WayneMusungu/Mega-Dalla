@@ -130,7 +130,7 @@ SOFTWARE.
 
 ## Product
 
-
+![MEGA-DALLA](backend/static/images/product.png)
 
 ## Order-Summary
 
