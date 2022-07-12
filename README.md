@@ -139,5 +139,6 @@ SOFTWARE.
 
 ![MEGA-DALLA](backend/static/images/order-summary.png)
 
- ## Checkout
+ ## Checkout  
+
 
