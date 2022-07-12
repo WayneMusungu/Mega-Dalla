@@ -1,10 +1,11 @@
-export interface Product {
-    id?: number;
+export interface Item{
     title: string;
     price: number;
-    discountPrice?: number;
+    discount_price: number;
     category: string;
     label: string;
+    slug: string;
     description: string;
-    image: string;
+    image: any;
+    id:number;
 }

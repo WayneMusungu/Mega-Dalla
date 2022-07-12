@@ -34,7 +34,7 @@ export class AuthService{
     loginUser(account: loginModel){
       return this.http.post<any>(`${this.url}/login/`,account)
         .pipe(catchError(this.handleError),tap((res)=>{
-          console.log(res.token);
+          console.log(res);
           this.setToken(res);
           this.handleAuth(res);
         }))
