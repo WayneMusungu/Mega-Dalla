@@ -124,7 +124,6 @@ SOFTWARE.
 ![MEGA-DALLA](backend/static/images/register.png)
 
 
-
 ### Login
 
 
