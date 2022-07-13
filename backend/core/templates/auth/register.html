@@ -1,4 +1,4 @@
-{%extends "auth/base.html"%} {% load bootstrap5 %} {% block content %}
+{%extends "base.html"%} {% load bootstrap5 %} {% block content %}
 <div class="container">
     <div style="margin-top: 30px;" class="row signs">
         <!-- Empty div -->
@@ -15,12 +15,12 @@
                     <form style="color: #000000;" action="" method="post">
                         {% csrf_token %} {% bootstrap_form form %}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+                            <input type="submit" class="btn btn-primary btn-sm login" value="Sign Up">
                         </div>
                         <input type="hidden" name="next" value="{{next}}">
                     </form>
                 </br>
-                <p>Already have an account? Log In <a href="/login">here.</a></p>
+                <p>Already have an account? Log In <a href="/login" class="user-register">here.</a></p>
                 </div>
             </div>
         </div>
