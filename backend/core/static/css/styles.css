@@ -1,72 +1,76 @@
-*{
-    font-family: 'Poppins', sans-serif;
-    
+* {
+  font-family: "Poppins", sans-serif;
 }
 /* start styling navbar */
- .navbar{
-    background-color: #023E8A;
-    color: #FFCC33;
- }
- /* end of styling navbar */
-
+.navbar {
+  background-color: #023e8a;
+  color: #ffcc33;
+}
+/* end of styling navbar */
 
 /* start styling welcome page */
-.bg{
-    background-color: white;
+.bg {
+  background-color: white;
 }
 /* end of styling welcome */
 
-
 /* start styling login page */
-.panel-body{
-    background-color: #023E8A;
-    color: #FFCC33;
-    width: 350px;;
-    height: 50vh;
-    margin-top: 45px;
-    border-radius: 10px;
+.panel-body {
+  background-color: #023e8a;
+  color: #ffcc33;
+  width: 350px;
+  height: 50vh;
+  margin-top: 45px;
+  border-radius: 10px;
 }
-.login{
-    border-color:#FFCC33 ;
-    margin-left:  105px; 
-    border-radius: 10px;
-    color: black;
-    width: 100px;
-    height: 5vh;
- }
+.login {
+  border-color: #ffcc33;
+  margin-left: 105px;
+  border-radius: 10px;
+  color: black;
+  width: 100px;
+  height: 5vh;
+}
 /* end stylinf the login */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -15px;
+}
 
-/* .badge {
-  position: absolute;
+.product-card {
+  display: inline-block;
+  width: 300px;
+  margin: 1rem auto;
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  background: #fafafa;
+}
+.badge-product {
+  /* position: relative; */
   left: 0;
   top: 20px;
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 700;
   background: rgb(255, 0, 200);
+  padding: 0.2rem;
   color: #fff;
-  padding: 3px 10px; 
-} */
+  display: inline;
+  position: absolute;
+  /* padding: 3px 10px;  */
+}
 
 /* about section */
-.about-sec{
-padding: 100px;
-width:auto ;
+.about-sec {
+  padding: 100px;
+  width: auto;
 }
 
-.col-lg{
-border-color: red;
+.col-lg {
+  border-color: red;
 }
-
-/* #mg-hero{
-    position: relative;
-  width: 50%;
-  height: 45vh; 
-  background:red;*/ 
-   /* display: flex;
-  justify-content: center;
-  align-items: center; */
- 
 
 .mg-hero-text {
   width: 40%;
@@ -77,18 +81,102 @@ border-color: red;
   justify-content: flex-start;
   align-items: flex-start;
   opacity: 0.9;
-} 
-/* 
-.smb-hero-text h3 {
+}
+
+.product-tumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  padding: 0px;
+  background: #f0f0f0;
+  overflow: hidden;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-details {
+  padding: 20px;
+}
+
+.product-catagory {
+  display: block;
+  font-size: 12px;
   font-weight: 700;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 18px;
 }
 
-.smb-hero-text span {
-  color: var(--pink);
-}
-
-.smb-hero-text p {
-  color: var(--white);
-  font-size: 1.2rem;
+.product-details h4 a {
   font-weight: 500;
-} */
+  display: block;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.product-details h4 a:hover {
+  color: #fbb72c;
+}
+
+.product-details p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 18px;
+  color: #999;
+}
+
+.product-bottom-details {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.product-bottom-details div {
+  /* float: left; */
+  width: 50%;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #fbb72c;
+  font-weight: 500;
+}
+
+.product-price small {
+  font-size: large;
+  font-weight: 1000;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-price a {
+  margin-left: 0.6rem;
+  color: rgb(255, 0, 200);
+}
+
+.product-links {
+  text-align: center;
+}
+
+.product-links a {
+  display: inline-block;
+  /* margin-left: 5px; */
+  color: #e1e1e1;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 250px;
+  height: 5vh;
+}
+
+.product-links a:hover {
+  color: #fbb72c;
+}
