@@ -47,23 +47,27 @@
     <!--Section: Products v.3-->
     <section class="text-center mb-4">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-md-6 mb-4" *ngFor="let item of list">
           <div class="card mb-3 product-card">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img
-                 src="https://res.cloudinary.com/dhmbjiskt/image/upload/v1657471262/tsxksirow87hlpm1hqmv.jpg"
-                 class="img-fluid rounded-start product-img"
-                 alt="product picture">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold">Palazo pants</h5>
-                  <p class="card-text">Pure cotton</p>
-                  <p class="card-text">Category: clothes</p>
-                  <p class="card-text">Price: <span class="text-danger">1,000</span> ksh</p>
-                  <a href="#" class="btn btn-primary add-cart-btn">ADD TO CART</a>
-                </div>
+            <div class="col-md-4">
+              <img
+                src="{{ item.image }}"
+                class="img-fluid rounded-start product-img"
+                alt="{{ item.title }}"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">{{ item.title }}</h5>
+                <p class="card-text">Category: {{ item.category }}</p>
+                <p class="card-text">
+                  Price: Ksh<span class="text-danger">{{ item.price }}</span>
+                </p>
+                <a
+                  [routerLink]="['/product/'+item.id]"
+                  class="btn btn-primary add-cart-btn"
+                  >View Product</a
+                >
               </div>
             </div>
           </div>
@@ -99,4 +103,3 @@
     </nav>
   </div>
 </div>
-<app-footer></app-footer>

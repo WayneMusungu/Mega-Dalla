@@ -19,7 +19,7 @@ const routes: Routes = [
 
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'profile-update', component:ProfileUpdateComponent},
-  {path: 'product', component:ProductComponent},
+  {path: 'product/:id', component:ProductComponent},
   {path: 'checkout', component:CheckoutComponent},
   {path: 'payment', component:PaymentComponent},
   {path: 'ordersummary', component:OrdersummaryComponent},
