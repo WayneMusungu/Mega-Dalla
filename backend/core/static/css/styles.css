@@ -1,12 +1,29 @@
 *{
     font-family: 'Poppins', sans-serif;
-    
+
 }
 /* start styling navbar */
  .navbar{
     background-color: #023E8A;
     color: #FFCC33;
  }
+
+ .navbar{
+    background: #0449a2;
+    height: 7vh;
+}
+.navbar-brand{
+    color: #FFCC33;
+}
+
+nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.user-icon {
+    font-size: 1.2em;
+}
  /* end of styling navbar */
 
 
@@ -28,7 +45,7 @@
 }
 .login{
     border-color:#FFCC33 ;
-    margin-left:  105px; 
+    margin-left:  105px;
     border-radius: 10px;
     color: black;
     width: 100px;

@@ -10,9 +10,10 @@ import { ProfileUpdateComponent } from './components/profile-update/profile-upda
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
-  
+
   // { path: '', redirectTo: '/auth', pathMatch: 'full' },
   // { path: '**', redirectTo: '/auth' },
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'payment', component:PaymentComponent},
   {path: 'ordersummary', component:OrdersummaryComponent},
   {path: 'home', component:HomeComponent},
+  {path:'cart', component: CartComponent},
   // {path: 'welcome', component:WelcomeComponent},
   {path: '', component:WelcomeComponent},
   {path: 'auth', component:AuthComponent}
