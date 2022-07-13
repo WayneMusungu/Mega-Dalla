@@ -3,7 +3,7 @@
 
 }
 /* start styling navbar */
- .navbar{
+ nav {
     background-color: #023E8A;
     color: #FFCC33;
  }
@@ -12,6 +12,7 @@
     background: #0449a2;
     height: 7vh;
 }
+
 .navbar-brand{
     color: #FFCC33;
 }
