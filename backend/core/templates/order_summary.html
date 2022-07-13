@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content%}
 <div class="container">
   <div class="table-responsive text-nowrap">
-    <h2><b>Order Summary</b></h2>
+    <h2><b>Order Summery</b></h2>
     <table class="table">
       <thead>
         <tr>
@@ -18,15 +18,27 @@
           <th scope="row">{{forloop.counter}}</th>
           <td>{{order_item.item.title}}</td>
           <td>{{order_item.item.price}}</td>
-          <td><a href='{% url "core:remove-single-item-cart" order_item.item.slug %}'><i class="fas fa-minus mr-2"></i></a>{{order_item.quantity}}<a href='{% url "core:add-to-cart" order_item.item.slug %}'><i class="fas fa-plus ml-2"></i></a></td>
           <td>
-            {% if order_item.item.discount_price %}
-            ksh {{order_item.get_total_discount_item_price}}
-            <span class="badge badge-secondary" style="color:blue"
-              >Saving ksh {{ order_item.get_amount_saved }}</span
+            <a
+              href='{% url "core:remove-single-item-cart" order_item.item.slug %}'
+              ><i class="fas fa-minus mr-2"></i></a
+            >{{order_item.quantity}}<a
+              href='{% url "core:add-to-cart" order_item.item.slug %}'
+              ><i class="fas fa-plus ml-2"></i
+            ></a>
+          </td>
+          <td>
+            {% if order_item.item.discount_price %} Kshs
+            {{order_item.get_total_discount_item_price}}
+            <span class="badge badge-secondary" style="color: blue"
+              >Saving Kshs {{ order_item.get_amount_saved }}</span
             >
-            {% else %} ksh {{order_item.get_total_item_price}}{% endif %}
-            <a style="color:red" href='{% url "core:remove-from-cart" order_item.item.slug %}'><i class="fas fa-trash float-right"></i></a>
+            {% else %} Kshs {{order_item.get_total_item_price}}{% endif %}
+            <a
+              style="color: red"
+              href='{% url "core:remove-from-cart" order_item.item.slug %}'
+              ><i class="fas fa-trash float-right"></i
+            ></a>
           </td>
         </tr>
         {% empty%}
@@ -41,11 +53,10 @@
           </td>
         </tr>
 
-        {% endfor %}
-        {% if object.get_total %}
+        {% endfor %} {% if object.get_total %}
         <tr>
           <td colspan="4"><b> Order Total </b></td>
-          <td><b>ksh {{ object.get_total}}</b></td>
+          <td><b>Kshs {{ object.get_total}}</b></td>
         </tr>
         <tr>
           <td colspan="5">

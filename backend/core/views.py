@@ -7,11 +7,14 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import DetailView,View 
+from django.views.generic import DetailView,View, CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import LoginForm, RegistrationForm, UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
-from core.forms import UserProfileForm,CheckoutForm
+from core.forms import UserProfileForm,CheckoutForm, ProductForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -29,17 +32,60 @@ def is_valid_form(values):
 
 @login_required
 def home(request):
+
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    # questions = Question.objects.all()
+
+    questions = Item.objects.filter(
+
+        Q(category__icontains=q) |
+        Q(title__icontains=q)
+
+    )
+
     items = Item.objects.all()
-    print(items)
+    # print(items)
+    print(questions)
     context = {
-        'items': items
+        'items': questions
+
     }
     return render(request, 'home.html', context)
+
+def vendor(request):
+    return render(request, 'vendor-home.html')
+
+class AddProductView(SuccessMessageMixin, CreateView):
+    model = Item
+    template_name = "add-product.html"
+    fields = '__all__'
+    exclude = ['related_image1','related_image2','related_image3']
+    success_message = "Product was created successfully"
+
+
+    def get_success_url(self):
+        return reverse_lazy('core:vendor')
+
+def addProduct(request):
+    context = {
+        "form": ProductForm
+    }
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.error(request, "Product was added successfully")
+            return redirect('vendor')
+        else:
+            print(form.errors)
+            messages.error(request, "Fail! Please check form for errors.")
+    return render(request, 'add-product.html', context)
 
 class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
-    
+
 
 def is_valid_form(values):
     valid = True
@@ -143,7 +189,7 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.info(self.request, "You do not have an active order")
             return redirect("core:checkout")
-        
+
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
@@ -400,9 +446,9 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")
-        
 
-        
+
+
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
@@ -445,7 +491,7 @@ def login_user(request):
                 return HttpResponse('Such a user does not exist')
         else:
             return HttpResponse("Form is not Valid")
-    
+
     return render(request,'auth/login.html',locals())
 
 @login_required(login_url='/login')
@@ -454,7 +500,7 @@ def logout_user(request):
     return redirect('core:welcome')
 
 class OrderSummaryView(LoginRequiredMixin,View):
-    
+
     def get(self,*args,**kwargs):
         try:
             order = Order.objects.get(user=self.request.user,ordered=False)
@@ -505,4 +551,4 @@ def remove_single_item_cart(request, slug):
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
 
-    
+
