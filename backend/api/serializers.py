@@ -15,20 +15,10 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validated_data)
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    # url = serializers.HyperlinkedIdentityField(view_name='profile-detail')
     user = UserSerializer()
     class Meta:
         model = UserProfile
         fields ='__all__'
-        
-        # def get_user(self, obj):
-        #     profile = UserProfile.objects.get(id=obj.user.id)
-        #     user = {
-        #         "id": obj.user.id,
-        #         "username": obj.user.username,
-        #         'email': obj.user.email,
-        #     }
-        #     return user
             
 class VendorSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='vendor-detail')
@@ -57,7 +47,7 @@ class OrderSerializer(serializers.ModelSerializer):
         fields="__all__"
         
 class AddressSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='address-detail')
+    # url = serializers.HyperlinkedIdentityField(view_name='address-detail')
     # user = UserSerializer()
     class Meta:
         model=Address

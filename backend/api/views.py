@@ -95,6 +95,8 @@ class AddressViewset(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class= AddressSerializer
     
+    # def update_address(self, serializer):
+    #     serializer.save(user=self.request.user)
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset= Transaction.objects.all()
