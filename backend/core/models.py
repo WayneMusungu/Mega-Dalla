@@ -12,13 +12,13 @@ from payments.models import Transaction
 
 from payments.models import Transaction
 
-CATEGORY_CHOICES = (
-    ('C', 'Clothes'),
-    ('E', 'Electronics'),
-    ('G', 'Groceries'),
-    ('J', 'Jewelry'),
-    ('S', 'Stationery')
-)
+# CATEGORY_CHOICES = (
+#     ('C', 'Clothes'),
+#     ('E', 'Electronics'),
+#     ('G', 'Groceries'),
+#     ('J', 'Jewelry'),
+#     ('S', 'Stationery')
+# )
 
 # LABEL_CHOICES = (
 #     ('P', 'primary'),
@@ -83,12 +83,18 @@ class Vendor(models.Model):
     def save_profile(self):
             self.save()
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    def __str__(self) -> str:
+        return self.name
+
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    # category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    main_category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=True)
     # label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
