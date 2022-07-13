@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -9,22 +9,24 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products: Item[] = [];
 
-  list!: Item;
+
+  @Input() list: any;
   id:number;
+  // @Output() itemAdded = new EventEmitter;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.productService.GetData().subscribe((item) => {
       console.log(item);
       this.list = item;
+      console.log(this.list);
     })
 
-    // this.productService.getProduct().subscribe((product) => (this.products = product))
-    // console.log(this.products)
-
   }
+  // addProductToCart(item) {
+  //   this.itemAdded.emit(item);
+// }
 
 }

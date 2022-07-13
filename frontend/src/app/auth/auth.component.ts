@@ -65,8 +65,7 @@ export class AuthComponent implements OnInit {
   onLogin(){
     this.authService.loginUser(this.loginForm.value)
     .subscribe((response) => {
-        // this.router.navigate(['/profile-update/']);
-        // this.rolecheck()
+
         this.authService.getProfile().subscribe((profile) => {
           this.router.navigate([`/profile-update/`]);
         });
@@ -78,12 +77,7 @@ export class AuthComponent implements OnInit {
     this.loginForm.reset()
 
   }
-  // rolecheck(){
-  //   if(this.user.is_customer == true){
-  //     return this.router.navigate(['/profile-update/']);
-  //   }
-  //   return this.router.navigate(['/profile/']);
-  // }
+
   passwordCheck(control: UntypedFormGroup): {[s:string]:boolean}{
     if(control.get('password').value != control.get('confirmpassword').value){
       return {'notsame': true}
