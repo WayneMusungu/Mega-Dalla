@@ -1,0 +1,77 @@
+<!-- <div class="col-md-6">
+  <div class="card mb-3 product-card">
+    <div class="row g-0 ">
+      <div class="col-md-4">
+        <img
+         src="https://res.cloudinary.com/dhmbjiskt/{{product.image}}"
+         class="img-fluid rounded-start product-img"
+         alt="product picture">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{product.title}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">Category: {{product.category}}</p>
+          <p class="card-text">Price: <span class="text-danger">{{product.price}}</span> ksh</p>
+          <a href="#" class="btn btn-primary add-cart-btn">ADD TO CART</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid" *ngIf="item">
+  <div class="container">
+    <div class="row main">
+      <div class="col-md-5 card left">
+        <div class="card-body pro-image">
+          <img
+            *ngIf="item.image"
+            src="https://res.cloudinary.com/ddtmsdlip/{{ item.image }}"
+            alt="{{ item.title }}"
+            class="img-fluid image"
+          />
+         
+        </div>
+        <div class="card-footer">{{ item.title }}</div>
+      </div>
+      <div class="col-md-3 text-center info">
+        <div>
+          <p>{{ item.description }}</p>
+        </div>
+        <div>
+          <button
+            class="btn btn-primary btn-sm my-0 p"
+            (click)="addtocart(item)"
+          >
+            Add to cart
+            <i class="fas fa-shopping-cart ml-1"></i>
+          </button>
+          <button class="btn btn-danger btn-sm my-0 p">Remove from cart</button>
+        </div>
+        <button class="btn btn-info btn-sm">View More Products</button>
+      </div>
+      <div class="col-md-4">
+        <h4>Related Products</h4>
+        <h5>{{item.additional_information}}</h5>
+        <img
+            *ngIf="item.image"
+            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image1 }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+          <img
+            *ngIf="item.image"
+            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image2 }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+          <img
+            *ngIf="item.image"
+            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image3 }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+      </div>
+    </div>
+  </div>
+</div>
