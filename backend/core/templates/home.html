@@ -1,48 +1,50 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
-{% comment %}<div class="container">
-   <h1>Welcome to Mega Dalla</h1>
-  {% for item in items%}
-  <p><a href="{{item.get_absolute_url}}"> {{item}} </a></p>
-  {% endfor %}
-</div> {% endcomment %}
 
 <main>
-  <div class="container">
-    <!--Navbar-->
-    
-    <!--/.Navbar-->
+  
 
-    <!--Section: Products v.3-->
- <section class="text-center mb-4">
-  <div class="row">
-    {% for item in items %}
-    <div class="col-lg-3 col-md-6 mb-4 mt-5">
-      
-        <div class="card">
-          <div class="view overlay">
-            <img
-             src="{{ item.image.url }}"
-             class="card-img-thumbnail"
-             style="height: 200px; width: 200px; margin-top: 2px;"
-             alt="product picture">
+<!------test------>
+   <div class="container">
+    <div class="row">
+      {% for item in items %}
+      <div class="col-md-3 m-3">
+        <div class="product-card">
+          <div class="badge-product">Hot</div>
+          <div class="product-tumb">
+            <a href="">
+              <img
+                src="{{ item.image.url }}"
+                alt=""
+              />
+            </a>
           </div>
-          <div class="card-body text-center">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold">{{ item.title }}</h5>
-              <p class="card-text">{{ item.slug }}</p>
-              <p class="card-text">Category: {{ item.get_category_display }}</p>
-              <p class="card-text"> {% if item.discount_price %} Discount Price: <span class="text-danger">ksh {{ item.discount_price }}</span> <br> {% else %}  Price: <span class="text-danger">ksh {{ item.price }}</span>  {% endif %}</p>
-              <a href="{{ item.get_absolute_url }}" class="btn btn-primary add-cart-btn">View Product</a>
+          <div class="product-details">
+            <span class="product-catagory">{{ item.get_category_display }}</span>
+            <h4><a href="">{{ item.title }}</a></h4>
+            <p>
+              {{ item.slug }}
+            </p>
+            <div class="product-bottom-details">
+              <div class="product-price my-3">Kshs {{item.price}} <a href="{{ object.get_add_to_cart_url }}" class="ml-3" title="add to cart"><i class="fa fa-shopping-cart"></i></a></div>
+
+              <div class="product-links">
+                 
+                <a href="{{ item.get_absolute_url }}" class="btn btn-primary add-cart-btn">view product</a>
+               
+              </div>
             </div>
           </div>
         </div>
-      
+        </div>
+        {%endfor%}
+
+        
+
+
+      </div>
     </div>
-    {% endfor %}
-  </div>
-</section>
-<!--Section: Products v.3-->
- 
+    </div>
+<!-----test end-------> 
 
     <!--Pagination-->
 
@@ -87,4 +89,6 @@
   </div>
 </main>
 
+
+ 
 {% endblock %}
