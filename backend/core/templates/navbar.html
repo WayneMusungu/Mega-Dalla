@@ -1,42 +1,30 @@
- <!-- navbar -->
- <nav class="navbar navbar-expand-lg mb-3 pb-2 pt-2">
-  <div class="container-fluid">
-    <div>
-      <a class="navbar-brand m" href="{% url 'core:home'%}">
-        MEGA-DALLA
-      </a>
-    </div>
+{% load cart_template_tags %}
 
-    <div class="ms-md-5" >
-      <form class="d-flex" action="">
-        <input  name="q" class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light" style="background:#023E8A; color:#FFCC33;">
+  
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+    
+    
+    <!-- Right -->
+    <ul class="navbar-nav nav-flex-icons">
+      {% if request.user.is_authenticated %}
+      <a class="navbar-brand" href="/home" style=" color: #FCC33F;">MEGA-DALLA</a>
+      <li  style="display: flex;" class="nav-item">
+        <a  style="margin-left: 600px; "  href="/order-summery/" class="nav-link waves-effect">
+          <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+          <i style="color: brown;" class="fas fa-shopping-cart"></i>
+          <span  style="color: #FCC33F;" class="clearfix d-none d-sm-inline-block"> Cart </span>
+        </a>
+      </li>
+      <li style="display: flex;" class="nav-item">
+        <a style="margin-left: 700px; color:#FCC33F ;" class="nav-link waves-effect" href="/logout">
+          <span  class="clearfix d-none d-sm-inline-block"> Logout </span>
+        </a>
+      </li>
+     
+      
+      {% endif %}
+    </ul>
 
-    <button class="navbar-toggler" type="button"
-           data-bs-toggle="collapse" data-bs-target="#menu">
-          <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <div class="dropdown">
-          <a class=" nav-link dropdown-toggle h4" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person"></i>
-          </a>
-
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            {%if user.is_authenticated %}
-
-              <li><a class="dropdown-item" href="/logout">logout</a></li>
-            {% else %}
-            <li>
-              <a class="dropdown-item" href="/login">login</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </ul>
-    </div>
   </div>
 </nav>
