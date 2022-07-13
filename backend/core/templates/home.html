@@ -25,7 +25,6 @@
               {{ item.slug }}
             </p>
             <div class="product-bottom-details">
-              <p class="card-text">Category: {{ item.get_category_display }}</p>
               <p class="card-text"> {% if item.discount_price %} Discount Price: <span class="text-danger">ksh {{ item.discount_price }}</span> <br> {% else %}  Price: <span class="text-danger">ksh {{ item.price }}</span>  {% endif %}</p>
 
               <div class="product-links">
