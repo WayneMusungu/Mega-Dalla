@@ -5,6 +5,7 @@ from core.models import *
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=250)
     class Meta:
         model = get_user_model()
         fields =('username','email', 'is_customer','is_vendor','password')
@@ -14,21 +15,21 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validated_data)
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='profile-detail')
-    # user = UserSerializer()
+    # url = serializers.HyperlinkedIdentityField(view_name='profile-detail')
+    user = UserSerializer()
     class Meta:
         model = UserProfile
         fields ='__all__'
         
         # def get_user(self, obj):
-        # profile = UserProfile.objects.get(id=obj.user.id)
-        # user = {
-        #     "id": obj.user.id,
-        #     "username": obj.user.username,
-        #     'email': obj.user.email,
-        # }
-        # return user
-        
+        #     profile = UserProfile.objects.get(id=obj.user.id)
+        #     user = {
+        #         "id": obj.user.id,
+        #         "username": obj.user.username,
+        #         'email': obj.user.email,
+        #     }
+        #     return user
+            
 class VendorSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='vendor-detail')
     class Meta:

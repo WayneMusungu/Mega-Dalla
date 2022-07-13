@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -9,38 +9,24 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products: Item[] = [];
 
-  list!: Item;
+
+  @Input() list: any;
   id:number;
+  // @Output() itemAdded = new EventEmitter;
 
-  constructor(private productService: ProductService) { 
-    this.list.id = this.id;
-  }
+  constructor(private productService: ProductService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.productService.GetData().subscribe((item) => {
       console.log(item);
       this.list = item;
-    })
-    this.productService.GetDatabyId(this.list.id).subscribe((item) => {
-      console.log(item);
-    // this.router.navigate(['/product'])
+      console.log(this.list);
     })
 
-    this.productService.getProduct().subscribe((product) => (this.products = product))
-    console.log(this.products)
-
-    // this.productService.GetData().subscribe((item) => {
-    //   console.log(item);
-    //   this.list = item;
-    // })
   }
-  // goToUrl(id:number){
-  //   this.productService.GetDatabyId(id).subscribe((item) => {
-  //     console.log(item);
-  //   // this.router.navigate(['/product'])
-  //   })
-  }
-
+  // addProductToCart(item) {
+  //   this.itemAdded.emit(item);
 // }
+
+}
