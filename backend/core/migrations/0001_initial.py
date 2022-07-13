@@ -73,9 +73,9 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('image', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image')),
                 ('additional_information', models.TextField()),
-                ('related_image1', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image', null=True)),
-                ('related_image2', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image', null=True)),
-                ('related_image3', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image', null=True)),
+                ('related_image1', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image')),
+                ('related_image2', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image')),
+                ('related_image3', cloudinary.models.CloudinaryField(max_length=255, verbose_name='image')),
             ],
         ),
         migrations.CreateModel(

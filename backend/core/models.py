@@ -20,11 +20,11 @@ CATEGORY_CHOICES = (
     ('S', 'Stationery')
 )
 
-LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
-)
+# LABEL_CHOICES = (
+#     ('P', 'primary'),
+#     ('S', 'secondary'),
+#     ('D', 'danger')
+# )
 
 
 ADDRESS_CHOICES = (
@@ -89,14 +89,14 @@ class Item(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
+    # label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
     image = CloudinaryField('image')
     additional_information = models.TextField()
-    related_image1 = CloudinaryField('image', null=True)
-    related_image2 = CloudinaryField('image', null=True)
-    related_image3 = CloudinaryField('image', null=True)
+    related_image1 = CloudinaryField('image')
+    related_image2 = CloudinaryField('image')
+    related_image3 = CloudinaryField('image')
 
     # amount = models.FloatField()
 
