@@ -1,0 +1,20 @@
+{% extends 'vendor_layout.html' %}
+{% load bootstrap5 %}
+{% block content%}
+    <h2>Add your product</h2>
+    <div class="container">
+        <div class="col-md-10">
+            {% if form.errors %}
+                {{ form.errors}}
+            {% endif %}
+            <form  class="p-2 mb-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %} {% bootstrap_form form%}
+
+                <div class="form-group">
+                    <input type="submit" style="background:#023E8A; color: #FFCC33;" value="Add product" class="login btn">
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock content%}

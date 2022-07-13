@@ -1,25 +1,31 @@
 from dataclasses import field
 from django.contrib.auth.models import User
 from django import forms
-from . models import UserProfile
+from . models import Item, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, authenticate
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
 PAYMENT_CHOICES = (
-    
+
     ('M', 'Mpesa'),
-    
+
 )
 
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = "__all__"
+        exclude = ('related_image1','related_image2','related_image3')
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['bio','phone_number']
-        
-        
+
+
 class RegistrationForm( UserCreationForm, forms.ModelForm):
     username = forms.CharField(max_length=30, required=True)
     email=forms.EmailField(max_length=100, required=True)
@@ -72,10 +78,10 @@ class CheckoutForm(forms.Form):
     use_default_billing = forms.BooleanField(required=False)
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
-    
-# 
 
-    
+#
+
+
 # class PaymentForm(forms.Form):
 #     stripeToken = forms.CharField(required=False)
 #     save = forms.BooleanField(required=False)

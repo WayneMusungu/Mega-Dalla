@@ -2,7 +2,7 @@
 from django.urls import path, include
 from . import views
 from django_registration.backends.one_step.views import RegistrationView
-from .views import CheckoutView, ItemDetailView, OrderSummaryView, remove_single_item_cart,update_profile
+from .views import CheckoutView, ItemDetailView, OrderSummaryView, remove_single_item_cart,update_profile, AddProductView, vendor, addProduct
 
 
 urlpatterns=[
@@ -15,6 +15,8 @@ urlpatterns=[
     path('profile-update/',update_profile, name='update_profile'),
     path('order-summery/',OrderSummaryView.as_view(), name='order-summery'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('vendor/', vendor, name='vendor'),
+    path('vendor/add-product', AddProductView.as_view(), name='add-product'),
     # path('payment/<payment_option>/', PaymentView.as_view(), name='payment'),
 
 

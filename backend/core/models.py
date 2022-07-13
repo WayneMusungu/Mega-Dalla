@@ -45,21 +45,21 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-    
+
     @receiver(post_save, sender=User)
     def create_user(sender, instance, created, dispatch_uid="customer", **kwargs):
         if instance.is_customer:
             if created:
-                UserProfile.objects.get_or_create(user = instance)            
-        
+                UserProfile.objects.get_or_create(user = instance)
+
     @receiver(post_save, sender=User)
     def save_admin(sender, instance, **kwargs):
         if instance.is_customer:
             instance.customer.save()
-    
+
     def save_profile(self):
             self.save()
-            
+
 class Vendor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='vendor')
     bio = models.CharField(max_length=250)
@@ -68,18 +68,18 @@ class Vendor(models.Model):
 
     def __str__(self):
         return self.user.username
-    
+
     @receiver(post_save, sender=User)
     def create_vendor(sender, instance, created, dispatch_uid="vendor", **kwargs):
         if instance.is_vendor:
             if created:
-                Vendor.objects.get_or_create(user = instance)            
-        
+                Vendor.objects.get_or_create(user = instance)
+
     @receiver(post_save, sender=User)
     def save_admin(sender, instance, **kwargs):
         if instance.is_vendor:
             instance.vendor.save()
-    
+
     def save_profile(self):
             self.save()
 
@@ -94,12 +94,12 @@ class Item(models.Model):
     description = models.TextField()
     image = CloudinaryField('image')
     additional_information = models.TextField()
-    related_image1 = CloudinaryField('image')
-    related_image2 = CloudinaryField('image')
-    related_image3 = CloudinaryField('image')
-    
+    related_image1 = CloudinaryField('image', null=True)
+    related_image2 = CloudinaryField('image', null=True)
+    related_image3 = CloudinaryField('image', null=True)
+
     # amount = models.FloatField()
-    
+
 
     def __str__(self):
         return self.title
