@@ -1,0 +1,13 @@
+.product-card {
+    width: 30vw;
+}
+
+.product-img {
+    height: 100%;
+}
+
+.add-cart-btn {
+    background-color: #CCB353;
+    color: white;
+    border: none;
+}
