@@ -12,6 +12,7 @@ from .models import Item, OrderItem, Order, Address, UserProfile
 from core.forms import LoginForm, RegistrationForm, UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.forms import UserProfileForm,CheckoutForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -29,12 +30,40 @@ def is_valid_form(values):
 
 @login_required
 def home(request):
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    # questions = Question.objects.all()
+
+    questions = Item.objects.filter(
+       
+        Q(category__icontains=q) |
+        Q(title__icontains=q)
+        
+    )
+   
+    
+    
+    
+    
+    
     items = Item.objects.all()
-    print(items)
+    # print(items)
+    print(questions)
     context = {
-        'items': items
+        'items': questions
+        
     }
     return render(request, 'home.html', context)
+# q = request.GET.get('q') if request.GET.get('q') != None else ''
+#     # questions = Question.objects.all()
+
+#     questions = Question.objects.filter(
+#         Q(topic__name__icontains=q) |
+#         Q(user__username__icontains=q) |
+#         Q(description__icontains=q) |
+#         Q(title__icontains=q)
+        
+#     )
 
 class ItemDetailView(DetailView):
     model = Item
