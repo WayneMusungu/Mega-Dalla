@@ -1,7 +1,7 @@
 import { User } from "./auth";
 
 export interface Address{
-    // user: User;
+    user: User;
     street_address: string;
     apartment_address: string;
     country: string;

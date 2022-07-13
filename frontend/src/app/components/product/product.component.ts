@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   getProd(): void {
      this.productService.GetDatabyId(this.id).subscribe((item) => {
       this.item=item;
+      console.log(this.item.image);
      })
   }
   // addProductToCart(item) {

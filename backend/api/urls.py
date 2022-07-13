@@ -23,6 +23,8 @@ urlpatterns=[
     path('logout/', views.LogoutView.as_view(), name='auth_logout'),
     path('profile/', views.ProfileViewset.as_view(), name='profile'),
     path('profile/<int:id>/', views.ProfileViewset.as_view(), name='profile_update'),
+    # path('address/', views.AddressViewset.as_view(), name='address'),
+    # path('addressadd/', views.AddressPost.as_view(), name='addressadd'),
 ]
 
 urlpatterns += router.urls
