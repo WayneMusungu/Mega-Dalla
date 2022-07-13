@@ -19,6 +19,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductComponent,
     ProfileUpdateComponent,
     WelcomeComponent,
-    FooterComponent
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
