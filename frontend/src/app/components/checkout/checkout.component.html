@@ -10,8 +10,28 @@
             [formGroup]="checkoutForm"
             (ngSubmit)="onSubmit()"
           >
-            <h3>Shipping address</h3>
+            <h3>Shipping Address <small class="text-danger" style="float:right;">uid: {{user.id}}</small></h3>
             <div class="hideable_shipping_form">
+              <div class="form-group">
+                <label for="user" class="">User_Id</label>
+                <input
+                  type="number"
+                  placeholder="Enter The Above User-ID"
+                  id="user"
+                  name="user"
+                  formControlName="user"
+                  class="form-control"
+                />
+                <span
+                  class="help-block"
+                  style="color: red"
+                  *ngIf="
+                    !checkoutForm.get('user').valid &&
+                    checkoutForm.get('user').touched
+                  "
+                  >Field is Required!</span
+                >
+              </div>
               <div class="form-group">
                 <label for="street_address" class="">Street Address</label>
                 <input
@@ -60,7 +80,7 @@
                   <label for="country">Country</label>
                   <input
                     type="select"
-                    placeholder="Country"
+                    placeholder="Enter Country Code(ie. KE for Kenya)" 
                     class="form-control"
                     name="country"
                     formControlName="country"
