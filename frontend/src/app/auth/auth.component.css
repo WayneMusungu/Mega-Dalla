@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: url(/assets/images/oliver.jpeg)
+
 }
 .reg{
     background: #0449a2;
@@ -12,6 +14,9 @@
     color:white;
     border: 1px solid black;
     border-radius: 5px;
+    position: relative;
+    opacity:0.9;
+    
 
 }
 .form-group{
@@ -19,4 +24,10 @@
 }
 .btn{
     margin: 5px;
+}
+.reg-image{
+    height:93vh;
+    width: 99%;
+    position: absolute;
+    filter: brightness(30%);
 }

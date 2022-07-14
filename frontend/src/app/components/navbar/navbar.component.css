@@ -1,18 +1,16 @@
-.navbar{
-    background: #0449a2;
-    height: 7vh;
+.user-icon {
+    font-size: 1.2em;
 }
-.navbar-brand{
+.navbar{
+    min-height: 7vh;
+    background: #023E8A;
     color: #FFCC33;
 }
 #nav-link{
     color: #FFCC33;
 }
-nav {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-.user-icon {
-    font-size: 1.2em;
+.navbar-image{
+    height: 30px;
+    border-radius: 50%;
+    
 }

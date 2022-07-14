@@ -1,4 +1,16 @@
-
+.navbar{
+    min-height: 7vh;
+    background: #023E8A;
+    color: #FFCC33;
+}
+#nav-link{
+    color: #FFCC33;
+}
+.navbar-image{
+    height: 30px;
+    border-radius: 50%;
+    
+}
 .hero{
     height:91vh;
     /* border: 1px solid red; */
@@ -84,7 +96,7 @@
 }
 .contact{
     background: #3d6293;
-    
+
 }
 .card-footer{
     background: #000000;

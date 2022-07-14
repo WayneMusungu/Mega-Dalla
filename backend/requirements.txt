@@ -9,7 +9,8 @@ confusable-homoglyphs==3.2.0
 crispy-bootstrap5==0.6
 cryptography==37.0.2
 defusedxml==0.7.1
-Django==3.2.14
+dj-database-url==0.5.0
+Django==4.0.6
 django-allauth==0.51.0
 django-bootstrap-v5==1.0.11
 django-cors-headers==3.13.0
@@ -17,10 +18,12 @@ django-countries==7.3.2
 django-crispy-forms==1.14.0
 django-extensions==3.1.5
 django-filter==22.1
+django-heroku==0.3.1
 django-phonenumber-field==6.3.0
 django-registration==3.3
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
+gunicorn==20.1.0
 idna==3.3
 importlib-metadata==4.12.0
 Markdown==3.3.7
@@ -29,7 +32,8 @@ phonenumbers==8.12.51
 psycopg2==2.9.3
 pycparser==2.21
 PyJWT==2.4.0
-python-flutterwave==0.5.9
+python-decouple==3.6
+python-flutterwave==0.7.9
 python3-openid==3.2.0
 pytz==2022.1
 requests==2.28.1
@@ -41,4 +45,5 @@ stripe==3.5.0
 typing-extensions==4.3.0
 urllib3==1.26.9
 Werkzeug==2.0.3
+whitenoise==6.2.0
 zipp==3.8.0
