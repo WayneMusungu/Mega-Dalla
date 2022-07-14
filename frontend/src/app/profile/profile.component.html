@@ -1,0 +1,39 @@
+<div class="container">
+  <div style="margin-top: 30px; margin-left: 90px" class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="text-center">
+        <h1>You are a click away from making your purchase</h1>
+        <h1>{{user}}</h1>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="prof-body">
+        <form
+          style="color: #000000"
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <input type="text" class="form-control" name="bio" id="bio" placeholder="Bio" formControlName="bio">
+        </div>
+        <div class="form-group">
+          <label for="phone-number">Phone number</label>
+          <input type="number" class="form-control" name="phone-number" id="phone-number" placeholder="Phone number" formControlName="phone-number">
+        </div>
+          
+          <div class="form-group text-center">
+            <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Update 
+          </button>
+          </div>
+          <input type="hidden" name="next" value="" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
