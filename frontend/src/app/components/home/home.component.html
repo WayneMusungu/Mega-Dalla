@@ -49,47 +49,30 @@
       <div class="row">
         <div class="col-md-6 mb-4" *ngFor="let item of list">
           <div class="card mb-3 product-card">
-            <div class="card-header">
-              <h5 class="card-title fw-bold">{{ item.title }}</h5>
-            </div>
-            <div class="card-body">
+            <div class="col-md-4">
               <img
-                src="https://res.cloudinary.com/dhmbjiskt/{{ item.image }}"
+                src="{{ item.image }}"
                 class="img-fluid rounded-start product-img"
                 alt="{{ item.title }}"
               />
             </div>
-            <div class="card-footer">
+            <div class="col-md-8">
               <div class="card-body">
-                <ul class="list-inline">
-                  <li class="card-text list-inline-item">
-                    Category: {{ item.category }}
-                  </li>
-                  <li class="card-text list-inline-item">
-                    Price: Ksh<small class="text-danger">{{ item.price }}</small>
-                  </li>
-                  <!-- <li class="list-inline-item"> -->
-                  <!-- <a
-                    [routerLink]="['/product/' + item.id]"
-                    class="btn btn-outline-info btn-sm"
-                    >View Product</a
-                  > -->
-                  <!-- </li> -->
-
-                </ul>
+                <h5 class="card-title fw-bold">{{ item.title }}</h5>
+                <p class="card-text">Category: {{ item.category }}</p>
+                <p class="card-text">
+                  Price: Ksh<span class="text-danger">{{ item.price }}</span>
+                </p>
                 <a
-                    [routerLink]="['/product/' + item.id]"
-                    class="btn btn-outline-info btn-sm"
-                    >View Product</a
-                  >
+                  [routerLink]="['/product/'+item.id]"
+                  class="btn btn-primary add-cart-btn"
+                  >View Product</a
+                >
               </div>
             </div>
           </div>
         </div>
-        <app-product
-          *ngFor="let product of list"
-          [product]="product"
-        ></app-product>
+          <app-product *ngFor="let product of list" [product]="product"></app-product>
       </div>
     </section>
     <!--Section: Products v.3-->

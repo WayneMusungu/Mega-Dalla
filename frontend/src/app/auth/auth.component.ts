@@ -67,7 +67,7 @@ export class AuthComponent implements OnInit {
     .subscribe((response) => {
 
         this.authService.getProfile().subscribe((profile) => {
-          this.router.navigate([`/home/`]);
+          this.router.navigate([`/profile-update/`]);
         });
       }
       ,(errorRes)=>{

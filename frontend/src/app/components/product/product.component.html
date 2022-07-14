@@ -21,56 +21,28 @@
 </div> -->
 <div class="container-fluid" *ngIf="item">
   <div class="container">
-    <div class="row main">
-      <div class="col-md-5 card left">
-        <div class="card-body pro-image">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Title: {{ item.title }}</h2>
+        <div style="height: 50vh">
           <img
-            *ngIf="item.image"
-            src="https://res.cloudinary.com/ddtmsdlip/{{ item.image }}"
+            src="{{ item.image }}"
             alt="{{ item.title }}"
-            class="img-fluid image"
+            style="height: 100%"
           />
-         
         </div>
-        <div class="card-footer">{{ item.title }}</div>
       </div>
-      <div class="col-md-3 text-center info">
+      <div class="col-md-6">
         <div>
-          <p>{{ item.description }}</p>
+          <p>{{item.description}}</p>
         </div>
         <div>
-          <button
-            class="btn btn-primary btn-sm my-0 p"
-            (click)="addtocart(item)"
-          >
+          <button class="btn btn-primary btn-md my-0 p" (click)=addtocart(item)>
             Add to cart
             <i class="fas fa-shopping-cart ml-1"></i>
           </button>
-          <button class="btn btn-danger btn-sm my-0 p">Remove from cart</button>
+          <a href="" class="btn btn-danger btn-md my-0 p"> Remove from cart </a>
         </div>
-        <button class="btn btn-info btn-sm">View More Products</button>
-      </div>
-      <div class="col-md-4">
-        <h4>Related Products</h4>
-        <h5>{{item.additional_information}}</h5>
-        <img
-            *ngIf="item.image"
-            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image1 }}"
-            alt="{{ item.title }}"
-            class="img-fluid adimage"
-          />
-          <img
-            *ngIf="item.image"
-            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image2 }}"
-            alt="{{ item.title }}"
-            class="img-fluid adimage"
-          />
-          <img
-            *ngIf="item.image"
-            src="https://res.cloudinary.com/dhmbjiskt/{{ item.related_image3 }}"
-            alt="{{ item.title }}"
-            class="img-fluid adimage"
-          />
       </div>
     </div>
   </div>

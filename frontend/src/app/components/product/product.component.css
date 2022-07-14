@@ -1,28 +1,13 @@
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height : 90vh;
-}
-.left{
-    height: 50vh;
+.product-card {
     width: 30vw;
-    text-align: center;
 }
-.pro-image {
-    height: 80%;
-}
-.image{
+
+.product-img {
     height: 100%;
-    width: 100%;
-    border-radius: 10px;
 }
-.adimage{
-    height: 30vh;
-    margin: 10px;
-    border-radius: 10px;
-    width: 13vw;
-}
-.btn{
-    margin: 5px;
+
+.add-cart-btn {
+    background-color: #CCB353;
+    color: white;
+    border: none;
 }
