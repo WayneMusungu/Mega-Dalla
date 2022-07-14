@@ -9,13 +9,14 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from datetime import timedelta
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +32,7 @@ SECRET_KEY = 'django-insecure-etuqw0$(nio4uyh-9bo3o)7rg7e!vc7xj3+2re^-!h%j35(inh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'mega-dalla.herokuapp.com']
 
 
 # Application definition
@@ -104,13 +105,15 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dallas',
-        'PASSWORD': 'sniff',
-        'USER': 'vic',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd4kgpppvlar495',
+        'USER': 'nwgglwhsvuyfvx',
+        'PASSWORD': '3699b768c5baff7bb2ab9b9de22f8645ddae2b4cb9f60579bf187a7d43108b5f',
+        'HOST': 'ec2-52-205-61-230.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -148,14 +151,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
+STATIC_FILES_DIRS = [os.path.join(BASE_DIR, 'static')],
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+django_heroku.settings(locals())
 
 REGISTER_REDIRECT_URL='core:home'
 LOGIN_REDIRECT_URL='core:home'
