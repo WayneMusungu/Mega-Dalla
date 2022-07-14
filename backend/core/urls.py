@@ -15,7 +15,7 @@ urlpatterns=[
     path('order-summery/',OrderSummaryView.as_view(), name='order-summery'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('vendor/', vendor, name='vendor'),
-    path('vendor/add-product', AddProductView.as_view(), name='vendor'),
+    path('vendor/add-product', AddProductView.as_view(), name='add-product'),
     # path('payment/<payment_option>/', PaymentView.as_view(), name='payment'),
 
 
