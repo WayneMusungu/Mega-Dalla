@@ -1,9 +1,9 @@
 
-{%extends "auth/base.html"%} {% load bootstrap5 %} {% block content %}
+{%extends "base.html"%} {% load bootstrap5 %} {% block content %}
 <div class="container">
     <div style="margin-top: 30px;" class="row signs">
         <div class="col-md-4"></div>
-        <div class="col-md-4">    
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="text-center">Login</h3>
@@ -12,12 +12,12 @@
                     <form style="color: #000000;" action="" method="post">
                         {% csrf_token %} {% bootstrap_form form%}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                            <input type="submit" class="btn btn-primary btn-sm login fw-bold" value="Login">
                         </div>
                         <input type="hidden" name="next" value="{{next}}">
                     </form>
                 </br>
-                <p>Don't have an account? Create one <a href="/register">here.</a></p>
+                <p>Don't have an account? Create one <a href="/register" class="user-register">here.</a></p>
                 </div>
             </div>
         </div>
