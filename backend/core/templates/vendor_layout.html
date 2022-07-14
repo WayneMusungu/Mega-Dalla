@@ -24,7 +24,7 @@
     <header
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
     >
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{%url 'core:vendor'%}"
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/home"
         >Mega Dalla</a
       >
       <button
@@ -58,26 +58,11 @@
         >
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  <span data-feather="home"></span>
-                  Profile
-                </a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="{%url 'core:add-product'%}">
                   <span data-feather="users"></span>
                   Add product
-                </a>
-              </li>
-              <li class="nav-item signout-nav" style="margin-top: 426px">
-                <a class="nav-link" id="signout" href="/logout">
-                  <span data-feather="layers"></span>
-                  Sign out
                 </a>
               </li>
             </ul>

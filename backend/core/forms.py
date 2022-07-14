@@ -9,7 +9,7 @@ from django_countries.widgets import CountrySelectWidget
 
 PAYMENT_CHOICES = (
 
-    ('M', 'Mpesa'),
+    ('F', 'Flutterwave'),
 
 )
 

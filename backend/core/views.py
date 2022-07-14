@@ -55,6 +55,7 @@ def home(request):
 def vendor(request):
     return render(request, 'vendor-home.html')
 
+
 class AddProductView(SuccessMessageMixin, CreateView):
     model = Item
     template_name = "add-product.html"
@@ -437,7 +438,7 @@ class CheckoutView(View):
                     return redirect('core:payment', payment_option='stripe')
                 elif payment_option == 'P':
                     return redirect('core:payment', payment_option='paypal')
-                elif payment_option == 'M':
+                elif payment_option == 'F':
                     return redirect('payments:initiate_payment')
                 else:
                     messages.warning(
