@@ -1,3 +1,36 @@
-.sign{
-    border-radius: 15px;
+.main{
+    background: #edf6f9;
+    border: 1px solid rgb(10, 48, 100);
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-image: url(/assets/images/oliver.jpeg) */
+
+}
+.reg-image{
+    height: 100vh;
+    width: 99%;
+    position: absolute;
+    filter: brightness(30%);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.reg{
+    background: #0449a2;
+    padding:20px;
+    color:white;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+    opacity:0.9;
+    
+
+}
+input {
+    /* margin: 5px; */
+    width: 100%;
+}
+.a input{
+    width: 5%;
 }

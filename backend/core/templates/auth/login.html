@@ -1,27 +1,32 @@
+{%extends "auth/base.html"%} {% load bootstrap5 %} {% load static %} {% block content %}
+<div class="container-fluid main" >
+  <img
+    src="{%static '/images/online.jpeg'%}"
+    alt="background"
+    class="img-responsive reg-image"
+  />
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-xs-12 col-md-6 col-md-offset-3 reg">
+      <h4>Login</h4>
 
-{%extends "auth/base.html"%} {% load bootstrap5 %} {% block content %}
-<div class="container">
-    <div style="margin-top: 30px;" class="row signs">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">    
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="text-center">Login</h3>
-                </div>
-                <div class="panel-body">
-                    <form style="color: #000000;" action="" method="post">
-                        {% csrf_token %} {% bootstrap_form form%}
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
-                        </div>
-                        <input type="hidden" name="next" value="{{next}}">
-                    </form>
-                </br>
-                <p>Don't have an account? Create one <a href="/register">here.</a></p>
-                </div>
-            </div>
+      <form action="" method="post">
+        {% csrf_token %} {% bootstrap_form form%}
+
+        <div>
+          <button class="btn btn-warning btn-sm" type="submit">Login</button>
+
+          <a
+            href="/register"
+            class="btn btn-outline-warning btn-sm"
+            type="button"
+          >
+            Switch to Signup
+          </a>
         </div>
-        <div class="col-md-4"></div>
+      </form>
     </div>
+    <div class="col-md-3"></div>
+  </div>
 </div>
 {% endblock %}
