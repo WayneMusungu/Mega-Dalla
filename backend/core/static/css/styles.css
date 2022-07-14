@@ -38,27 +38,37 @@ nav {
 .panel-body {
   background-color: #023e8a;
   color: #ffcc33;
-  width: 350px;
-  height: 50vh;
-  margin-top: 45px;
+  width: 30rem;
+  /* height: 50vh; */
+  margin-top: 1rem;
   border-radius: 10px;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
 }
-.login {
+
+.user-register {
+  color: white;
+}
+
+label.form-label {
+  color: yellow;
+}
+
+
+input.login {
   border-color: #ffcc33;
-  margin-left: 105px;
+  background-color: #ffcc33;
+  /* margin-left: 105px; */
   border-radius: 10px;
-  color: black;
+  color: #fff;
   width: 100px;
   height: 5vh;
 }
-.login{
-    border-color:#FFCC33 ;
-    margin-left:  105px;
-    border-radius: 10px;
-    color: black;
-    width: 100px;
-    height: 5vh;
- }
+
+ul > li {
+  color : white;
+}
+
 /* end stylinf the login */
 .row {
   display: flex;
@@ -208,3 +218,7 @@ nav {
 .product-links a:hover {
   color: #fbb72c;
 }
+
+/* login form */
+
+
