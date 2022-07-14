@@ -47,32 +47,39 @@
     <!--Section: Products v.3-->
     <section class="text-center mb-4">
       <div class="row">
-        <div class="col-md-6 mb-4" *ngFor="let item of list">
-          <div class="card mb-3 product-card">
-            <div class="col-md-4">
+        <div class="col-md-2" *ngFor="let item of list">
+          <div class="card product-card">
+            <div class="card-header">
+              <h5 class="card-title fw-bold">{{ item.title }}</h5>
+            </div>
+            <div class="badge-product">Hot</div>
+            <div class="card-body">
               <img
                 src="{{ item.image }}"
                 class="img-fluid rounded-start product-img"
                 alt="{{ item.title }}"
               />
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">{{ item.title }}</h5>
-                <p class="card-text">Category: {{ item.category }}</p>
-                <p class="card-text">
-                  Price: Ksh<span class="text-danger">{{ item.price }}</span>
-                </p>
+            <div class="card-footer">
+              
+                <ul class="list-inline">
+                  <li class="card-text list-inline-item">
+                    Category: {{ item.category }}
+                  </li>
+                  <li class="card-text list-inline-item">
+                    <small class="text-muted">Price: Ksh{{ item.price }}</small>
+                  </li>
+
+                </ul>
                 <a
-                  [routerLink]="['/product/'+item.id]"
-                  class="btn btn-primary add-cart-btn"
-                  >View Product</a
-                >
-              </div>
+                    [routerLink]="['/product/' + item.id]"
+                    class="btn btn-outline-warning btn-sm"
+                    >View</a
+                  >
+             
             </div>
           </div>
         </div>
-          <app-product *ngFor="let product of list" [product]="product"></app-product>
       </div>
     </section>
     <!--Section: Products v.3-->

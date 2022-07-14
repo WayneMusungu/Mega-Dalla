@@ -100,7 +100,7 @@ export class AuthService{
     logout(){
       this.user.next(null)
       this.removeLocalStorage();
-      this.route.navigate(['/auth'])
+      this.route.navigate(['/'])
     }
 
   setToken(token: any): void {
